@@ -1,0 +1,12 @@
+@mixin buttonNormal($bgColor, $color) {
+  background-color: $bgColor;
+  color: $color;
+  text-shadow: none;
+  background-image: none;
+}
+
+@mixin buttonSpecial($color) {
+  background: transparent;
+  box-shadow: 0 0 0 1px $color inset !important;
+  color: $color !important;
+}

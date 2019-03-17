@@ -1,0 +1,372 @@
+/*
+    Prof: Coman Alexandru 
+    Authors: @Gliga Dumitru & @Broasca Iulian
+    Project Name : FOU - File Online Upload
+    Year : 2019-2020
+
+    -mai ordonata , mai putin haos,
+    -ii place ce face jerry
+    - sa ii 
+*/
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  display: block;
+  min-height: 100vh;
+  -webkit-box-shadow: 0 0 0 0.5px rgba(34, 36, 38, 0.15);
+          box-shadow: 0 0 0 0.5px rgba(34, 36, 38, 0.15);
+}
+
+.app.button {
+  cursor: pointer;
+  display: inline-block;
+  outline: none;
+  border: none;
+  background: #e0e1e2;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: none;
+  text-shadow: none;
+  font-weight: bold;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  border-radius: 0.3rem;
+  padding: 10px 20px;
+}
+
+.app.button:hover {
+  background-color: #cacbcd;
+  background-image: none;
+  -webkit-box-shadow: 0px 0px 0px 1px transparent, 0 0 0 0 rgba(34, 36, 38, 0.15);
+          box-shadow: 0px 0px 0px 1px transparent, 0 0 0 0 rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.app.button.blue {
+  background-color: #2185d0;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.red {
+  background-color: #db2828;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.green {
+  background-color: #21ba45;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.blue:hover {
+  background-color: #08416d;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.red:hover {
+  background-color: #770b0b;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.green:hover {
+  background-color: #0e5a20;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.black {
+  background-color: #000;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.black:hover {
+  background-color: #363636;
+  color: white;
+  text-shadow: none;
+  background-image: none;
+}
+
+.app.button.special {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6) inset !important;
+          box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6) inset !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.app.button.special:hover {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px rgba(87, 86, 86, 0.7) inset !important;
+          box-shadow: 0 0 0 1px rgba(87, 86, 86, 0.7) inset !important;
+  color: rgba(87, 86, 86, 0.7) !important;
+}
+
+.app.button.special.blue {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #2185d0 inset !important;
+          box-shadow: 0 0 0 1px #2185d0 inset !important;
+  color: #2185d0 !important;
+}
+
+.app.button.special.blue:hover {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #08416d inset !important;
+          box-shadow: 0 0 0 1px #08416d inset !important;
+  color: #08416d !important;
+}
+
+.app.button.special.red {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #db2828 inset !important;
+          box-shadow: 0 0 0 1px #db2828 inset !important;
+  color: #db2828 !important;
+}
+
+.app.button.special.green {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #21ba45 inset !important;
+          box-shadow: 0 0 0 1px #21ba45 inset !important;
+  color: #21ba45 !important;
+}
+
+.app.button.special.red:hover {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #770b0b inset !important;
+          box-shadow: 0 0 0 1px #770b0b inset !important;
+  color: #770b0b !important;
+}
+
+.app.button.special.green:hover {
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 1px #0e5a20 inset !important;
+          box-shadow: 0 0 0 1px #0e5a20 inset !important;
+  color: #0e5a20 !important;
+}
+
+.app.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  padding: 0;
+}
+
+.app.grid > .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  width: 100% !important;
+  padding: 1rem 0rem;
+}
+
+.col,
+.col2,
+.col3,
+.col4,
+.col5,
+.col6 {
+  text-align: center;
+  padding: 20px;
+  -webkit-box-shadow: 0 0 0 0.5px rgba(34, 36, 38, 0.15);
+          box-shadow: 0 0 0 0.5px rgba(34, 36, 38, 0.15);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.app.grid > .row > .col:only-child,
+.app.grid > .col:only-child {
+  width: 100%;
+}
+
+.app.grid > .row > .col2,
+.app.grid > .col2 {
+  width: 50%;
+}
+
+.app.grid > .row > .col3,
+.app.grid > .col3 {
+  width: 33.3333333%;
+}
+
+.app.grid > .row > .col4,
+.app.grid > .col4 {
+  width: 25%;
+}
+
+.app.grid > .row > .col5,
+.app.grid > .col5 {
+  width: 20%;
+}
+
+.app.grid > .row > .col6,
+.app.grid > .col6 {
+  width: 16.666666%;
+}
+/*# sourceMappingURL=base.css.map */

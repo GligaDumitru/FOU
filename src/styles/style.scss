@@ -1,0 +1,44 @@
+.app.mainHeader {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  overflow: hidden;
+  display: block;
+}
+.app.mainNav {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.app.mainNav .mainList {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.app.mainNav .mainList .item {
+  float: right;
+}
+
+.app.mainNav .mainList > .item > .link {
+  display: block;
+  padding: 20px 30px !important;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto";
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.app.mainNav .mainList > .item > .link:hover {
+  border-bottom: 1px solid #e00000;
+  color: #e00000;
+}
