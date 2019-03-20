@@ -7,6 +7,15 @@
   min-height: 100vh;
   overflow: hidden;
   display: block;
+  background-image: url(http://initiatives.iitgn.ac.in/cli/wp-content/uploads/2018/01/white-background-image-36-min.jpg);
+  /* background-size: 100%; */
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  position: relative;
+  background-repeat: no-repeat;
 }
 
 .app.mainNav {
@@ -29,6 +38,10 @@
   float: right;
 }
 
+.center {
+  text-align: center !important;
+}
+
 .app.mainNav .mainList > .item > .link {
   display: block;
   padding: 20px 30px !important;
@@ -40,8 +53,488 @@
   border-bottom: 1px solid transparent;
 }
 
-.app.mainNav .mainList > .item > .link:hover {
-  border-bottom: 1px solid #e00000;
-  color: #e00000;
+.app.mainNav .mainList > .item > .link:hover,
+.app.mainNav .mainList > .item > .link.mainLink.active {
+  border-bottom: 1px solid #007adf;
+  color: #007adf;
+}
+
+.app.details {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.app.logo {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.app.logo .logoImg {
+  border: none;
+  border-radius: 50%;
+  height: 100%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-height: 200px;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  opacity: 0.7;
+}
+
+.app.details.aboutPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.app.details.aboutPage .app.logo {
+  width: 20%;
+  float: left;
+}
+
+.app.details.aboutPage .app.appName {
+  width: 80%;
+  float: left;
+  text-align: left;
+}
+
+.app.details.aboutPage .app.appName span {
+  font-size: 5vh;
+}
+
+.app.details.aboutPage .app.logo .logoImg {
+  border: none;
+  border-radius: 50%;
+  height: 100%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-height: 100px;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  opacity: 0.7;
+}
+
+.app.logo .logoImgehover {
+  opacity: 1;
+  -webkit-box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.app.appName {
+  width: 100%;
+  font-size: 7vh;
+  font-weight: 800;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1px;
+}
+
+.app.appName span {
+  background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
+  background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.app.appName span:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#b1def3));
+  background: linear-gradient(to top, #007adf 0%, #b1def3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px #dadfe2;
+}
+
+.app.subtitleName {
+  width: 100%;
+  padding: 40px 0;
+  font-size: 3vh;
+  background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
+  background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Roboto", sans-serif;
+}
+
+.formContainerUpload {
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.formContainerUpload form {
+  width: 70%;
+  margin: auto;
+  position: relative;
+  padding: 80px 20px;
+  background-color: #1fc8db;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
+  background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  -webkit-box-shadow: 5px 5px 5px 1px #f2f2f2;
+          box-shadow: 5px 5px 5px 1px #f2f2f2;
+  text-align: center;
+  outline: 2px dashed #fff;
+  outline-offset: -10px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+  opacity: 0.6;
+}
+
+.formContainerUpload form:hover {
+  -webkit-box-shadow: 5px 5px 5px 1px #99a6c2;
+          box-shadow: 5px 5px 5px 1px #99a6c2;
+  outline: 2px dashed #0f46ad;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  opacity: 0.9;
+}
+
+.formContainerUpload form:hover .app.labelInput strong {
+  font-size: 35px;
+  text-shadow: 1px 1px #0f46ad;
+}
+
+.app.labelInput {
+  width: 50%;
+}
+
+.app.labelInput strong {
+  font-size: 30px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.app.labelInput span {
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  -webkit-text-decoration: dashed;
+          text-decoration: dashed;
+}
+
+.app.labelInput:hover {
+  cursor: pointer;
+}
+
+.loginform {
+  width: 30%;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(242, 242, 242, 0.5);
+  font-family: "Roboto", sans-serif;
+}
+
+.loginform:hover {
+  background: rgba(242, 242, 242, 0.9);
+}
+
+.loginform input {
+  width: 100%;
+  display: block;
+  line-height: 30px;
+  font-size: 18px;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  background: transparent;
+  border-radius: 3px;
+  border-image-source: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  border-width: 1px;
+  border-image-slice: 1;
+}
+
+.loginform label {
+  position: relative;
+  top: 7px;
+  left: 10px;
+  background: #f2f2f2;
+  padding: 0 5px;
+  opacity: 0.9;
+  color: red;
+}
+
+.loginform input:hover {
+  -o-border-image: linear-gradient(to left, #743ad5, #d53a9d);
+     border-image: -webkit-gradient(linear, right top, left top, from(#743ad5), to(#d53a9d));
+     border-image: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+.titleLogin {
+  display: block;
+  font-size: 30px;
+  letter-spacing: 0.5;
+  margin: 20px;
+  color: #007adf;
+}
+
+.group-items {
+  text-align: left;
+}
+
+.group-items .app.button.submitLogin {
+  border: 1px solid transparent;
+  background: transparent;
+  margin: 50px 0;
+  border-radius: 3px;
+  border-image-source: linear-gradient(to top, #007adf 0%, #00ecbc 100%) !important;
+  border-width: 1px;
+  border-image-slice: 1;
+  display: block;
+  width: 100%;
+  line-height: 30px;
+  font-size: 18px;
+  padding: 10px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.group-items .app.button.submitLogin:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
+  background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  color: #fff;
+}
+
+.group-items.options {
+  display: inherit;
+}
+
+.group-items.options a.left {
+  float: left;
+}
+
+.group-items.options a.right {
+  float: right;
+}
+
+.group-items a {
+  text-decoration: none;
+  color: #000000;
+  margin: 10px 0 30px 0;
+}
+
+.group-items a:hover {
+  text-decoration: underline;
+}
+
+.app-menu-primary {
+  min-height: 100vh;
+  display: block;
+  background: #263238;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  color: #aaa !important;
+  -webkit-box-shadow: -15px 0px 20px 15px #263238;
+          box-shadow: -15px 0px 20px 15px #263238;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.app-menu-primary .user-details {
+  width: 100%;
+  min-height: 50px;
+  border-bottom: 1px solid #222222;
+  margin-bottom: 50px;
+}
+
+.app-menu-primary .user-details .avatar-user {
+  font-family: "Roboto", sans-serif;
+  width: 15%;
+  min-width: 35px;
+  text-align: center;
+  float: left;
+}
+
+.app-menu-primary .user-details .avatar-user img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.app-menu-primary .user-details .user {
+  display: block;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  width: 80%;
+  min-width: 85px;
+  float: left;
+  font-size: 15px;
+  text-align: left;
+}
+
+.app-menu-primary .user-details .user span.name {
+  display: block;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.app-menu-primary:hover {
+  -webkit-box-shadow: -16px 0px 20px 20px #263238;
+          box-shadow: -16px 0px 20px 20px #263238;
+}
+
+.no-padding {
+  padding: 0 !important;
+  min-width: 200px;
+  width: 18% !important;
+}
+
+.nav-bar.sidebar {
+  width: 100%;
+}
+
+.nav-bar.sidebar .sidebar-list {
+  width: 100%;
+}
+
+.nav-bar.sidebar .sidebar-list .amount {
+  right: 0;
+  background: #aaa;
+  border-radius: 5px;
+  padding: 5px;
+  float: right;
+  color: #fff;
+}
+
+.nav-bar.sidebar .sidebar-list .subfolder-list li a {
+  margin-left: 25px;
+}
+
+.nav-bar.sidebar .sidebar-list li {
+  text-align: left;
+}
+
+.nav-bar.sidebar .sidebar-list li i.folder-show {
+  display: block;
+  float: left;
+  padding: 5px 10px 0 10px;
+}
+
+.nav-bar.sidebar .sidebar-list li i.folder-show:hover {
+  cursor: pointer;
+}
+
+.nav-bar.sidebar .sidebar-list li a {
+  display: block;
+  float: left;
+  padding: 5px 10px 15px 10px;
+  width: 80%;
+  color: #aaa;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-bar.sidebar .sidebar-list li a i {
+  padding-right: 10px;
+}
+
+.nav-bar.sidebar .sidebar-list li a:hover {
+  color: #fff;
+}
+
+.main-dashboard-page {
+  width: 82%;
+  float: left;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.main-dashboard-page .main-options {
+  padding: 10px;
+  border-bottom: 1px solid #f2f2f2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.main-dashboard-page .main-options button {
+  margin-right: 10px;
+}
+
+.main-dashboard-page .main-options.second {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  max-height: 60px;
+  overflow: initial;
+}
+
+.main-dashboard-page .main-options.second .file-conter {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  color: #aaa;
+  text-transform: uppercase;
+  padding: 5px;
+  background: #f2f2f2;
+  border-radius: 5px;
+  display: block;
+}
+
+.main-dashboard-page .main-options.second .view-options .view-list-options {
+  list-style-type: none;
+  min-width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.main-dashboard-page .main-options.second .view-options .view-list-options li .view-mode {
+  background: #f2f2f2;
+  min-width: 100px;
+  position: relative;
+  top: 0px;
+  left: -20px;
+}
+
+.main-dashboard-page .main-options.second .view-options .view-list-options li a {
+  display: inline-block;
+  padding: 10px;
+  color: #747879;
+  text-decoration: none;
+  width: 130px;
+}
+
+.main-dashboard-page .main-options.second .view-options .view-list-options li a:hover {
+  color: #000;
+}
+
+ul[data-view*="notifications"],
+ul[data-view*="filter"],
+ul[data-view*="sort"],
+ul[data-view*="view"] {
+  display: none;
+}
+
+li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
+  display: block;
+}
+
+li[data-view*="sort"]:hover ul[data-view*="sort"] {
+  display: block;
+}
+
+li[data-view*="filter"]:hover ul[data-view*="filter"] {
+  display: block;
+}
+
+li[data-view*="view"]:hover ul[data-view*="view"] {
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */
