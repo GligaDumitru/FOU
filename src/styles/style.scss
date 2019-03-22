@@ -298,6 +298,7 @@ $mainColor: #007adf;
 
 .group-items a:hover {
   text-decoration: underline;
+}
 
   // start styling for dashboard
 
@@ -483,4 +484,57 @@ $mainColor: #007adf;
   li[data-view*="view"]:hover ul[data-view*="view"] {
     display: block;
   }
+
+.icon-bar{
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.rightPosition{
+  right:0
+}
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #1C8ADB;
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.google {
+  background: #dd4b39;
+  color: white;
+}
+
+.linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.feedback{
+  background: #1C8ADB;
+  color: white;
 }
