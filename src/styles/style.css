@@ -136,6 +136,7 @@
   background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
   background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
@@ -145,6 +146,7 @@
   background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#b1def3));
   background: linear-gradient(to top, #007adf 0%, #b1def3 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 1px #dadfe2;
 }
@@ -156,6 +158,7 @@
   background: -webkit-gradient(linear, left bottom, left top, from(#007adf), to(#00ecbc));
   background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: "Roboto", sans-serif;
 }
@@ -320,7 +323,7 @@
   text-decoration: underline;
 }
 
-.app-menu-primary {
+.group-items a:hover .app-menu-primary {
   min-height: 100vh;
   display: block;
   background: #263238;
@@ -334,14 +337,14 @@
           transition-duration: 0.4s;
 }
 
-.app-menu-primary .user-details {
+.group-items a:hover .app-menu-primary .user-details {
   width: 100%;
   min-height: 50px;
   border-bottom: 1px solid #222222;
   margin-bottom: 50px;
 }
 
-.app-menu-primary .user-details .avatar-user {
+.group-items a:hover .app-menu-primary .user-details .avatar-user {
   font-family: "Roboto", sans-serif;
   width: 15%;
   min-width: 35px;
@@ -349,13 +352,13 @@
   float: left;
 }
 
-.app-menu-primary .user-details .avatar-user img {
+.group-items a:hover .app-menu-primary .user-details .avatar-user img {
   width: 30px;
   height: 30px;
   border-radius: 50%;
 }
 
-.app-menu-primary .user-details .user {
+.group-items a:hover .app-menu-primary .user-details .user {
   display: block;
   overflow: hidden;
   font-family: "Roboto", sans-serif;
@@ -366,32 +369,32 @@
   text-align: left;
 }
 
-.app-menu-primary .user-details .user span.name {
+.group-items a:hover .app-menu-primary .user-details .user span.name {
   display: block;
   margin: 10px 0;
   color: #fff;
 }
 
-.app-menu-primary:hover {
+.group-items a:hover .app-menu-primary:hover {
   -webkit-box-shadow: -16px 0px 20px 20px #263238;
           box-shadow: -16px 0px 20px 20px #263238;
 }
 
-.no-padding {
+.group-items a:hover .no-padding {
   padding: 0 !important;
   min-width: 200px;
   width: 18% !important;
 }
 
-.nav-bar.sidebar {
+.group-items a:hover .nav-bar.sidebar {
   width: 100%;
 }
 
-.nav-bar.sidebar .sidebar-list {
+.group-items a:hover .nav-bar.sidebar .sidebar-list {
   width: 100%;
 }
 
-.nav-bar.sidebar .sidebar-list .amount {
+.group-items a:hover .nav-bar.sidebar .sidebar-list .amount {
   right: 0;
   background: #aaa;
   border-radius: 5px;
@@ -400,25 +403,25 @@
   color: #fff;
 }
 
-.nav-bar.sidebar .sidebar-list .subfolder-list li a {
+.group-items a:hover .nav-bar.sidebar .sidebar-list .subfolder-list li a {
   margin-left: 25px;
 }
 
-.nav-bar.sidebar .sidebar-list li {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li {
   text-align: left;
 }
 
-.nav-bar.sidebar .sidebar-list li i.folder-show {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li i.folder-show {
   display: block;
   float: left;
   padding: 5px 10px 0 10px;
 }
 
-.nav-bar.sidebar .sidebar-list li i.folder-show:hover {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li i.folder-show:hover {
   cursor: pointer;
 }
 
-.nav-bar.sidebar .sidebar-list li a {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li a {
   display: block;
   float: left;
   padding: 5px 10px 15px 10px;
@@ -429,22 +432,22 @@
   font-family: "Roboto", sans-serif;
 }
 
-.nav-bar.sidebar .sidebar-list li a i {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li a i {
   padding-right: 10px;
 }
 
-.nav-bar.sidebar .sidebar-list li a:hover {
+.group-items a:hover .nav-bar.sidebar .sidebar-list li a:hover {
   color: #fff;
 }
 
-.main-dashboard-page {
+.group-items a:hover .main-dashboard-page {
   width: 82%;
   float: left;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-.main-dashboard-page .main-options {
+.group-items a:hover .main-dashboard-page .main-options {
   padding: 10px;
   border-bottom: 1px solid #f2f2f2;
   display: -webkit-box;
@@ -455,11 +458,11 @@
           justify-content: start;
 }
 
-.main-dashboard-page .main-options button {
+.group-items a:hover .main-dashboard-page .main-options button {
   margin-right: 10px;
 }
 
-.main-dashboard-page .main-options.second {
+.group-items a:hover .main-dashboard-page .main-options.second {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -473,7 +476,7 @@
   overflow: initial;
 }
 
-.main-dashboard-page .main-options.second .file-conter {
+.group-items a:hover .main-dashboard-page .main-options.second .file-conter {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   color: #aaa;
@@ -484,7 +487,7 @@
   display: block;
 }
 
-.main-dashboard-page .main-options.second .view-options .view-list-options {
+.group-items a:hover .main-dashboard-page .main-options.second .view-options .view-list-options {
   list-style-type: none;
   min-width: 400px;
   display: -webkit-box;
@@ -495,7 +498,7 @@
           justify-content: space-between;
 }
 
-.main-dashboard-page .main-options.second .view-options .view-list-options li .view-mode {
+.group-items a:hover .main-dashboard-page .main-options.second .view-options .view-list-options li .view-mode {
   background: #f2f2f2;
   min-width: 100px;
   position: relative;
@@ -503,7 +506,7 @@
   left: -20px;
 }
 
-.main-dashboard-page .main-options.second .view-options .view-list-options li a {
+.group-items a:hover .main-dashboard-page .main-options.second .view-options .view-list-options li a {
   display: inline-block;
   padding: 10px;
   color: #747879;
@@ -511,30 +514,30 @@
   width: 130px;
 }
 
-.main-dashboard-page .main-options.second .view-options .view-list-options li a:hover {
+.group-items a:hover .main-dashboard-page .main-options.second .view-options .view-list-options li a:hover {
   color: #000;
 }
 
-ul[data-view*="notifications"],
-ul[data-view*="filter"],
-ul[data-view*="sort"],
-ul[data-view*="view"] {
+.group-items a:hover ul[data-view*="notifications"],
+.group-items a:hover ul[data-view*="filter"],
+.group-items a:hover ul[data-view*="sort"],
+.group-items a:hover ul[data-view*="view"] {
   display: none;
 }
 
-li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
+.group-items a:hover li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
   display: block;
 }
 
-li[data-view*="sort"]:hover ul[data-view*="sort"] {
+.group-items a:hover li[data-view*="sort"]:hover ul[data-view*="sort"] {
   display: block;
 }
 
-li[data-view*="filter"]:hover ul[data-view*="filter"] {
+.group-items a:hover li[data-view*="filter"]:hover ul[data-view*="filter"] {
   display: block;
 }
 
-li[data-view*="view"]:hover ul[data-view*="view"] {
+.group-items a:hover li[data-view*="view"]:hover ul[data-view*="view"] {
   display: block;
 }
 /*# sourceMappingURL=style.css.map */
