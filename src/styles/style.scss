@@ -299,193 +299,194 @@ $mainColor: #007adf;
 .group-items a:hover {
   text-decoration: underline;
 }
+// start styling for dashboard
 
-  // start styling for dashboard
+.app-menu-primary {
+  min-height: 100vh;
+  display: block;
+  background: #263238;
+  box-sizing: border-box;
+  padding: 10px;
+  color: #aaa !important;
+  box-shadow: -15px 0px 20px 15px #263238;
+  transition-duration: 0.4s;
 
-  .app-menu-primary {
-    min-height: 100vh;
-    display: block;
-    background: #263238;
-    box-sizing: border-box;
-    padding: 10px;
-    color: #aaa !important;
-    box-shadow: -15px 0px 20px 15px #263238;
-    transition-duration: 0.4s;
-
-    .user-details {
-      width: 100%;
-      min-height: 50px;
-      border-bottom: 1px solid #222222;
-      margin-bottom: 50px;
-      .avatar-user {
-        font-family: "Roboto", sans-serif;
-        width: 15%;
-        min-width: 35px;
-        text-align: center;
-        float: left;
-        img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-      }
-      .user {
-        display: block;
-        overflow: hidden;
-        font-family: "Roboto", sans-serif;
-        width: 80%;
-        min-width: 85px;
-        float: left;
-        font-size: 15px;
-        text-align: left;
-
-        span.name {
-          display: block;
-          margin: 10px 0;
-          color: #fff;
-        }
+  .user-details {
+    width: 100%;
+    min-height: 50px;
+    border-bottom: 1px solid #222222;
+    margin-bottom: 50px;
+    .avatar-user {
+      font-family: "Roboto", sans-serif;
+      width: 15%;
+      min-width: 35px;
+      text-align: center;
+      float: left;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
       }
     }
-  }
+    .user {
+      display: block;
+      overflow: hidden;
+      font-family: "Roboto", sans-serif;
+      width: 80%;
+      min-width: 85px;
+      float: left;
+      font-size: 15px;
+      text-align: left;
 
-  .app-menu-primary:hover {
-    box-shadow: -16px 0px 20px 20px #263238;
-  }
-  .no-padding {
-    padding: 0 !important;
-    min-width: 200px;
-    width: 18% !important;
-  }
-
-  .nav-bar.sidebar {
-    width: 100%;
-    .sidebar-list {
-      width: 100%;
-      .amount {
-        right: 0;
-        background: #aaa;
-        border-radius: 5px;
-        padding: 5px;
-        float: right;
+      span.name {
+        display: block;
+        margin: 10px 0;
         color: #fff;
       }
+    }
+  }
+}
 
-      .subfolder-list li a {
-        margin-left: 25px;
+.app-menu-primary:hover {
+  box-shadow: -16px 0px 20px 20px #263238;
+}
+.no-padding {
+  padding: 0 !important;
+  min-width: 200px;
+  width: 18% !important;
+}
+
+.nav-bar.sidebar {
+  width: 100%;
+  .sidebar-list {
+    width: 100%;
+    .amount {
+      right: 0;
+      background: #aaa;
+      border-radius: 5px;
+      padding: 5px;
+      float: right;
+      color: #fff;
+    }
+
+    .subfolder-list li a {
+      margin-left: 25px;
+    }
+    li {
+      text-align: left;
+      i.folder-show {
+        display: block;
+        float: left;
+        padding: 5px 10px 0 10px;
       }
-      li {
-        text-align: left;
-        i.folder-show {
-          display: block;
-          float: left;
-          padding: 5px 10px 0 10px;
+      i.folder-show:hover {
+        cursor: pointer;
+      }
+      a {
+        display: block;
+        float: left;
+        padding: 5px 10px 15px 10px;
+        width: 80%;
+        color: #aaa;
+        font-size: 14px;
+        text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        i {
+          padding-right: 10px;
         }
-        i.folder-show:hover {
-          cursor: pointer;
-        }
-        a {
-          display: block;
-          float: left;
-          padding: 5px 10px 15px 10px;
-          width: 80%;
-          color: #aaa;
-          font-size: 14px;
-          text-decoration: none;
-          font-family: "Roboto", sans-serif;
-          i {
-            padding-right: 10px;
-          }
-        }
-        a:hover {
-          color: #fff;
-        }
+      }
+      a:hover {
+        color: #fff;
       }
     }
   }
+}
 
-  .main-dashboard-page {
-    width: 82%;
-    float: left;
-    box-sizing: border-box;
+.main-dashboard-page {
+  width: 82%;
+  float: left;
+  box-sizing: border-box;
 
-    .main-options {
-      padding: 10px;
-      border-bottom: 1px solid #f2f2f2;
-      display: flex;
-      justify-content: start;
+  .main-options {
+    font-family: "Roboto", sans-serif;
 
-      button {
-        margin-right: 10px;
-      }
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    justify-content: start;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  .main-options.second {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    max-height: 60px;
+    overflow: initial;
+
+    .file-conter {
+      font-size: 14px;
+      font-family: "Roboto", sans-serif;
+      color: #aaa;
+      text-transform: uppercase;
+      padding: 5px;
+      background: #f2f2f2;
+      border-radius: 5px;
+      display: block;
     }
 
-    .main-options.second {
+    .view-options .view-list-options {
+      list-style-type: none;
+      min-width: 400px;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      max-height: 60px;
-      overflow: initial;
 
-      .file-conter {
-        font-size: 14px;
-        font-family: "Roboto", sans-serif;
-        color: #aaa;
-        text-transform: uppercase;
-        padding: 5px;
+      li .view-mode {
         background: #f2f2f2;
-        border-radius: 5px;
-        display: block;
+        min-width: 100px;
+        position: relative;
+        top: 0px;
+        left: -20px;
       }
 
-      .view-options .view-list-options {
-        list-style-type: none;
-        min-width: 400px;
-        display: flex;
-        justify-content: space-between;
-
-        li .view-mode {
-          background: #f2f2f2;
-          min-width: 100px;
-          position: relative;
-          top: 0px;
-          left: -20px;
-        }
-
-        li a {
-          display: inline-block;
-          padding: 10px;
-          color: #747879;
-          text-decoration: none;
-          width: 130px;
-        }
-        li a:hover {
-          color: #000;
-        }
+      li a {
+        display: inline-block;
+        padding: 10px;
+        color: #747879;
+        text-decoration: none;
+        width: 130px;
+      }
+      li a:hover {
+        color: #000;
       }
     }
   }
+}
 
-  ul[data-view*="notifications"],
-  ul[data-view*="filter"],
-  ul[data-view*="sort"],
-  ul[data-view*="view"] {
-    display: none;
-  }
+ul[data-view*="notifications"],
+ul[data-view*="filter"],
+ul[data-view*="sort"],
+ul[data-view*="view"] {
+  display: none;
+}
 
-  li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
-    display: block;
-  }
-  li[data-view*="sort"]:hover ul[data-view*="sort"] {
-    display: block;
-  }
-  li[data-view*="filter"]:hover ul[data-view*="filter"] {
-    display: block;
-  }
-  li[data-view*="view"]:hover ul[data-view*="view"] {
-    display: block;
-  }
+li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
+  display: block;
+}
+li[data-view*="sort"]:hover ul[data-view*="sort"] {
+  display: block;
+}
+li[data-view*="filter"]:hover ul[data-view*="filter"] {
+  display: block;
+}
+li[data-view*="view"]:hover ul[data-view*="view"] {
+  display: block;
+}
 
-.icon-bar{
+.icon-bar {
   position: fixed;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -493,8 +494,8 @@ $mainColor: #007adf;
   transform: translateY(-50%);
 }
 
-.rightPosition{
-  right:0
+.rightPosition {
+  right: 0;
 }
 .icon-bar a {
   display: block;
@@ -506,16 +507,16 @@ $mainColor: #007adf;
 }
 
 .icon-bar a:hover {
-  background-color: #1C8ADB;
+  background-color: #1c8adb;
 }
 
 .facebook {
-  background: #3B5998;
+  background: #3b5998;
   color: white;
 }
 
 .twitter {
-  background: #55ACEE;
+  background: #55acee;
   color: white;
 }
 
@@ -534,7 +535,37 @@ $mainColor: #007adf;
   color: white;
 }
 
-.feedback{
-  background: #1C8ADB;
+.feedback {
+  background: #1c8adb;
   color: white;
+}
+
+//table design
+
+table {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+table tr {
+  text-align: center;
+}
+
+table tr:hover {
+  background: #747879;
+}
+
+table thead th {
+  background: #263238;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+table tbody tr td {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: "Roboto", sans-serif;
 }

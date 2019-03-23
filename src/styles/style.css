@@ -448,6 +448,7 @@
 }
 
 .main-dashboard-page .main-options {
+  font-family: "Roboto", sans-serif;
   padding: 10px;
   border-bottom: 1px solid #f2f2f2;
   display: -webkit-box;
@@ -563,16 +564,16 @@ li[data-view*="view"]:hover ul[data-view*="view"] {
 }
 
 .icon-bar a:hover {
-  background-color: #1C8ADB;
+  background-color: #1c8adb;
 }
 
 .facebook {
-  background: #3B5998;
+  background: #3b5998;
   color: white;
 }
 
 .twitter {
-  background: #55ACEE;
+  background: #55acee;
   color: white;
 }
 
@@ -592,7 +593,35 @@ li[data-view*="view"]:hover ul[data-view*="view"] {
 }
 
 .feedback {
-  background: #1C8ADB;
+  background: #1c8adb;
   color: white;
+}
+
+table {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+}
+
+table tr {
+  text-align: center;
+}
+
+table tr:hover {
+  background: #747879;
+}
+
+table thead th {
+  background: #263238;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+table tbody tr td {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: "Roboto", sans-serif;
 }
 /*# sourceMappingURL=style.css.map */
