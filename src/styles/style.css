@@ -8,11 +8,9 @@
   overflow: hidden;
   display: block;
   background-image: url(http://initiatives.iitgn.ac.in/cli/wp-content/uploads/2018/01/white-background-image-36-min.jpg);
-  /* background-size: 100%; */
   background-color: #cccccc;
   height: 500px;
   background-position: center;
-  /* background-repeat: no-repeat; */
   background-size: cover;
   position: relative;
   background-repeat: no-repeat;
