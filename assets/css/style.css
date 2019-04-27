@@ -11,6 +11,7 @@
   background-color: #cccccc;
   height: 500px;
   background-position: center;
+  /* background-repeat: no-repeat; */
   background-size: cover;
   position: relative;
   background-repeat: no-repeat;
@@ -547,10 +548,6 @@ li[data-view*="view"]:hover ul[data-view*="view"] {
   transform: translateY(-50%);
 }
 
-.rightPosition {
-  right: 0;
-}
-
 .icon-bar a {
   display: block;
   text-align: center;
@@ -559,10 +556,37 @@ li[data-view*="view"]:hover ul[data-view*="view"] {
   transition: all 0.3s ease;
   color: white;
   font-size: 20px;
+  -webkit-transform: translateX(-5px);
+          transform: translateX(-5px);
 }
 
 .icon-bar a:hover {
-  background-color: #1c8adb;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-box-shadow: 2px 2px 5px 1px #b3b3b3;
+          box-shadow: 2px 2px 5px 1px #b3b3b3;
+  z-index: 99999999;
+  opacity: .95;
+  border: 0px solid transparent;
+}
+
+.rightPosition {
+  right: 0;
+}
+
+.rightPosition a {
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+}
+
+.rightPosition a:hover {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-box-shadow: 2px 2px 5px 1px #b3b3b3;
+          box-shadow: 2px 2px 5px 1px #b3b3b3;
+  z-index: 99999999;
+  opacity: .95;
+  border: 0px solid transparent;
 }
 
 .facebook {
