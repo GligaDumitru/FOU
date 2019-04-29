@@ -19,4 +19,12 @@ class PagesController
     {
         require_once('views/pages/error.php');
     }
+    public function logout()
+    {
+        header("Location:/FOU");
+      session_unset();
+      session_destroy();
+   
+    //   header("Location:/FOU");
+    }
 }

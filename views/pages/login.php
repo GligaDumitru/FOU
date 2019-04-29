@@ -42,17 +42,17 @@ require_once("../../routes.php");
         <div class="row">
             <div class="col center">
 
-                <form class="loginform">
+                <form class="loginform" action="/FOU/?controller=auth&action=signin" method="POST" onsubmit="return validateForm();">
                     <span class="titleLogin">
                         Intra in cont
                     </span>
                     <div class="group-items">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" maxlength="100" required />
+                        <label for="emailUser">Email</label>
+                        <input type="email" maxlength="25" id="emailUser" minlength=5 name="email" onkeyup="checkInput(event);" maxlength="100" required />
                     </div>
                     <div class="group-items">
-                        <label for="name">Password</label>
-                        <input type="password" name="password" maxlength="100" required />
+                        <label for="passwordUser">Password</label>
+                        <input type="password" name="password" id="passwordUser" minlength=5 onkeyup="checkInput(event);" maxlength="12" required />
                     </div>
                     <div class="group-items options">
                         <a class="left" href="register.php?controller=pages&action=register">
@@ -62,9 +62,43 @@ require_once("../../routes.php");
                             Am uitat parola
                         </a>
                     </div>
+                    <?php
+                    if (isset($_GET['error'])) {
+                        $errorMsg = "";
+                        switch ($_GET['error']) {
+                            case 'badrequest':
+                                $errorMsg = "Email or password are incorect";
+                                break;
+                            case 'noaccess':
+                                $errorMsg = "You need to login";
+                                break;
+                        }
+                        echo '
+                            <div class="errorContainer" id="errorContainerId">
+                                <span class="errorMessage">' . $errorMsg . '</span>
+                                <span class="closeError" title="Close Message" id="closeErrorMessage"><i class="far fa-times-circle"></i></span>
+                            </div>';
+                    }
+                    ?>
+                    <?php
+                    if (isset($_GET['success'])) {
+                        $successMsg = "";
+                        switch ($_GET['success']) {
+                            case 'account':
+                                $successMsg = "Account created!Now login to account!";
+                                break;
+                           
+                        }
+                        echo '
+                            <div class="successContainer" id="successContainerId">
+                                <span class="successMessage">' . $successMsg . '</span>
+                                <span class="closeSuccess" title="Close Message" id="closeSuccessMessage"><i class="far fa-times-circle"></i></span>
+                            </div>';
+                    }
+                    ?>
                     <div class="group-items">
                         <a href="dashboard.html">
-                            <button class="app button submitLogin">
+                            <button type="submit" id="submitLogin" class="app button submitLogin disabledBtn">
                                 Intra in cont
                             </button>
                         </a>
@@ -73,6 +107,7 @@ require_once("../../routes.php");
             </div>
         </div>
     </header>
+    <script src="../../assets/js/validate.js"></script>
 </body>
 
 </html>

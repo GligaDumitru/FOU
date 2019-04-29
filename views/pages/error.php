@@ -13,5 +13,8 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             echo 'error page';
     }
 } else {
-    echo 'errror';
+    if (isset($_GET['error']))
+        echo $_GET['error'];
+    else
+        echo 'error page';
 }

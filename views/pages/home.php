@@ -4,6 +4,7 @@
 
 require_once("checkRoute.php");
 require_once("routes.php");
+
 ?>
 
 <head>
@@ -26,11 +27,26 @@ require_once("routes.php");
     <header class="app mainHeader">
         <nav class="app mainNav">
             <ul class="mainList">
-                <li class="item mainItem">
-                    <a href="views/pages/login.php?controller=pages&action=login" class="link mainLink">
-                        <i class="far fa-user"></i> <span>Login</span>
-                    </a>
-                </li>
+                <?php
+                if ($isLogged === true) {
+                    echo '
+                    <li class="item mainItem">
+                        <a href="views/pages/dashboard.php" class="link mainLink">
+                            <i class="far fa-user"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    ';
+                } else {
+                    echo '
+                    <li class="item mainItem">
+                        <a href="views/pages/login.php?controller=pages&action=login" class="link mainLink">
+                            <i class="far fa-user"></i> <span>Login</span>
+                        </a>
+                    </li>
+                    ';
+                }
+                ?>
+
                 <li class="item mainItem">
                     <a href="views/pages/about.php?controller=pages&action=about" class="link mainLink">
                         <i class="far fa-question-circle"></i> <span>Despre</span>
