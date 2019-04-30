@@ -58,7 +58,7 @@ require_once("../../routes.php");
                         <a class="left" href="register.php?controller=pages&action=register">
                             Inregistrare
                         </a>
-                        <a class="right" href="forgotPassword.php?controller=auth&action=recoverPassword">
+                        <a class="right" href="recoverPassword.php">
                             Am uitat parola
                         </a>
                     </div>
