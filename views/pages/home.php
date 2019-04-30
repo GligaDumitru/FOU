@@ -2,8 +2,15 @@
 <html lang="en">
 <?php
 
-require_once("checkRoute.php");
-require_once("routes.php");
+require_once "checkRoute.php";
+require_once "routes.php";
+
+if (isset($_GET['message'])) {
+    if ($_GET['message'] == 'thankyou') {
+        require_once 'views/pages/thankyou.php';
+    }
+}
+
 ?>
 
 <head>
@@ -16,21 +23,38 @@ require_once("routes.php");
     <link rel="stylesheet" href="assets/css/responsive.css" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
 
 <body>
+
     <header class="app mainHeader">
         <nav class="app mainNav">
             <ul class="mainList">
-                <li class="item mainItem">
-                    <a href="views/pages/login.php?controller=pages&action=login" class="link mainLink">
-                        <i class="far fa-user"></i> <span>Login</span>
-                    </a>
-                </li>
+                <?php
+if ($isLogged === true) {
+    echo '
+                    <li class="item mainItem">
+                        <a href="views/pages/dashboard.php" class="link mainLink">
+                            <i class="far fa-user"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    ';
+} else {
+    echo '
+                    <li class="item mainItem">
+                        <a href="views/pages/login.php?controller=pages&action=login" class="link mainLink">
+                            <i class="far fa-user"></i> <span>Login</span>
+                        </a>
+                    </li>
+                    ';
+}
+?>
+
                 <li class="item mainItem">
                     <a href="views/pages/about.php?controller=pages&action=about" class="link mainLink">
                         <i class="far fa-question-circle"></i> <span>Despre</span>
@@ -47,7 +71,8 @@ require_once("routes.php");
             <div class="col center">
                 <div class="app details">
                     <div class="app logo">
-                        <img src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" alt="logo" class="logoImg" />
+                        <img src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" alt="logo"
+                            class="logoImg" />
                     </div>
                     <div class="app appName">
                         <span>FOU - File Online Upload</span>
@@ -70,15 +95,24 @@ require_once("routes.php");
         </div>
         <div class="row">
             <div class="formContainerUpload">
-                <form method="post" action="" enctype="multipart/form-data">
+                <form method="post" action="?controller=fou&action=upload" enctype="multipart/form-data">
                     <div class="box__input">
-                        <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple style="display:none" />
-                        <label class="app labelInput" for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                        <input class="box__file" onchange="handleChangeInput(event);" type="file" name="files[]"
+                            id="file" multiple style="display:none" />
+                        <label class="app labelInput" for="file"><strong>Choose a file</strong><span
+                                class="box__dragndrop" id="optionToDragAndDrop"> or drag it here</span>.</label>
+                        <br>
                     </div>
+                    <div class="boxFileUploaded">
+                        <span id="fileForUpload">No file Selected</span>
+                    </div>
+                    <button class="app button blue" name="upload" id="submitFile" type="submit">Upload</button>
+
                 </form>
             </div>
         </div>
     </header>
 </body>
+<script src="assets/js/upload.js"></script>
 
 </html>

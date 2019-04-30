@@ -42,30 +42,34 @@ require_once("../../routes.php");
         <div class="row">
             <div class="col center">
 
-                <form action="" class="loginform">
+                <form action="/FOU/?controller=auth&action=signup" class="loginform" method="POST" onsubmit="return validateSignupForm();">
                     <span class="titleLogin">
                         Join us! Creaza cont!
                     </span>
                     <div class="group-items">
-                        <label for="name">Nume Prenume</label>
-                        <input type="name" name="name" maxlength="100" required />
+                        <label for="userName">Nume Prenume</label>
+                        <input type="name" name="name" id="userName" maxlength="100" minlength=5 onkeyup="checkInput(event);" required />
                     </div>
                     <div class="group-items">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" maxlength="100" required />
+                        <label for="userEmail">Email</label>
+                        <input type="email" maxlength="25" id="userEmail" minlength=5 name="email" onkeyup="checkInput(event);" maxlength="100" required />
                     </div>
                     <div class="group-items">
-                        <label for="password">Parola</label>
-                        <input type="password" name="password" maxlength="100" required />
+                        <label for="userPassword">Parola</label>
+                        <input type="password" name="password" id="userPassword" minlength=5 onkeyup="checkInput(event);" maxlength="12" required />
                     </div>
                     <div class="group-items">
-                        <label for="rePassword">Parola </label>
-                        <input type="password" name="rePassword" maxlength="100" required />
+                        <label for="userRePassword">Parola </label>
+                        <input type="password" name="rePassword" id="userRePassword" minlength=5 onkeyup="checkInput(event);" maxlength="12" required />
                     </div>
                     <div class="group-items options">
                         <a class="left" href="login.php?controller=pages&action=login">
                             Intra in cont
                         </a>
+                    </div>
+                    <div class="errorContainerForCheck" id="errorContainerIdForCheck" style="display:none">
+                        <span class="errorMessageForCheck"></span>
+                        <span class="closeError" title="Close Message" id="closeErrorMessageForCheck"><i class="far fa-times-circle"></i></span>
                     </div>
                     <div class="group-items">
                         <button class="app button submitLogin">
@@ -73,22 +77,31 @@ require_once("../../routes.php");
                         </button>
                     </div>
 
-                    <!-- <div class="group-items">
-              <label for="name">Name</label>
-              <input type="text" name="name" maxlength="100" required />
-            </div>
-            <div class="group-items">
-              <label for="name">Name</label>
-              <input type="text" name="name" maxlength="100" required />
-            </div>
-            <div class="group-items">
-              <label for="bio">About You</label>
-              <textarea name="bio"></textarea>
-            </div> -->
+                    <?php
+                    if (isset($_GET['error'])) {
+                        $errorMsg = "";
+                        switch ($_GET['error']) {
+                            case 'badrequest':
+                                $errorMsg = "Email or password are incorect";
+                                break;
+                            case 'noaccess':
+                                $errorMsg = "You need to login";
+                                break;
+                        }
+                        echo '
+                            <div class="errorContainer" id="errorContainerId">
+                                <span class="errorMessage">' . $errorMsg . '</span>
+                                <span class="closeError" title="Close Message" id="closeErrorMessage"><i class="far fa-times-circle"></i></span>
+                            </div>';
+                    }
+                    ?>
+
                 </form>
             </div>
         </div>
     </header>
 </body>
+<script src="../../assets/js/validate.js"></script>
+
 
 </html>

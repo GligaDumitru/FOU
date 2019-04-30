@@ -4,6 +4,8 @@ function invoke($controller, $action)
     require_once('controllers/' . $controller . 'Controller.php');
 
     // here will require the models
+    require_once('connection.php');
+    require_once('models/users.php');
 
     // switch through controllers options
     switch ($controller) {
@@ -13,6 +15,9 @@ function invoke($controller, $action)
         case 'pages':
             $controller = new PagesController();
             break;
+        case 'fou':
+            $controller = new FouController();
+            break;
     }
 
     // call the action received from url
@@ -21,8 +26,9 @@ function invoke($controller, $action)
 }
 
 $controllersArray = array(
-    'pages' => ['error', 'register', 'main', 'about', 'login', 'noConnection'],
-    'auth' => ['signup', 'signin', 'recoverPassword'],
+    'pages' => ['error', 'register', 'main', 'about', 'login', 'noConnection', 'logout'],
+    'auth' => ['signup', 'signin', 'recoverPassword', 'signup'],
+    'fou' => ['upload','downloadfile'],
 );
 
 if (array_key_exists($controller, $controllersArray)) {

@@ -1,0 +1,53 @@
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {MockTranslateService} from '../../../helpers/mock-translate.service';
+import {JhiAlertComponent} from '../../../../../../main/webapp/app/shared/alert/alert.component';
+import {AlertService} from '../../../../../../main/webapp/app/shared/alert/alert.service';
+import {MockEventManagerReceiveEventDirectly} from '../../../helpers/mock-event-manager';
+import {HeaderUtil} from '../../../../../../main/webapp/app/shared/alert/header-util.service';
+import {DiaEventManager} from '../../../../../../main/webapp/app/shared/event-manager/event-manager.service';
+
+describe('Component Tests', () => {
+
+    describe('Alert Component', () => {
+        let comp: JhiAlertComponent;
+        let fixture: ComponentFixture<JhiAlertComponent>;
+
+        beforeEach(async(() => {
+            TestBed.configureTestingModule({
+                declarations: [JhiAlertComponent],
+                providers: [
+                    AlertService,
+                    HeaderUtil,
+                    {
+                        provide: TranslateService,
+                        useClass: MockTranslateService
+                    },
+                    {
+                        provide: DiaEventManager,
+                        useValue: new MockEventManagerReceiveEventDirectly()
+                    }
+                ]
+            }).overrideComponent(JhiAlertComponent, {
+                set: {
+                    template: '',
+                    templateUrl: undefined
+                }
+            }).compileComponents();
+        }));
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(JhiAlertComponent);
+            comp = fixture.componentInstance;
+        });
+
+
+        describe('OnInit', () => {
+            it('Should create alert component', () => {
+                expect( comp ).not.toBeUndefined();
+            });
+        });
+    });
+
+});

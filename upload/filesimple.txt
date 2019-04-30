@@ -1,0 +1,67 @@
+import {AssetsGeneralInfoComponent} from '../../../../../../../main/webapp/app/entities/assets-module/assets-edit/assets-general-info/assets-general-info.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {AssetModel} from '../../../../../../../main/webapp/app/models/asset.model';
+import {GenericModelService} from '../../../../../../../main/webapp/app/shared/generic-model/generic-model.service';
+import {of as observableOf} from 'rxjs';
+
+describe('Component Tests', () => {
+    describe('Assets general info component', () => {
+        let comp: AssetsGeneralInfoComponent;
+        let fixture: ComponentFixture<AssetsGeneralInfoComponent>;
+        let genericModelService = jasmine.createSpyObj('MockGenericModelService', ['onModelChange', 'registerComponent', 'modelChanged']);
+        let asset = <AssetModel>AssetModel.createFromInput({id: 1});
+
+        beforeEach(async(() => {
+            TestBed.configureTestingModule({
+                declarations: [AssetsGeneralInfoComponent],
+                providers: [
+                    {
+                        provide: GenericModelService,
+                        useValue: genericModelService
+                    }
+                ]
+            }).overrideComponent(AssetsGeneralInfoComponent, {
+                set: {
+                    template: '',
+                    templateUrl: undefined,
+                    styleUrls: []
+                }
+            }).compileComponents();
+        }));
+
+        beforeEach(() => {
+            fixture = TestBed.createComponent(AssetsGeneralInfoComponent);
+            comp = fixture.componentInstance;
+            genericModelService.onModelChange.and.returnValue(observableOf({
+                model: asset,
+                viewMode: true
+            }));
+        });
+
+        describe('OnInit', () => {
+            it('Should set formFieldsConfiguration', () => {
+                // GIVEN
+                expect(comp.formFieldsConfiguration).toBe(undefined);
+
+                // WHEN
+                comp.ngOnInit();
+
+                // THEN
+                expect(comp.formFieldsConfiguration.length).toEqual(3);
+            });
+
+            it('Should set asset model if receive it from service', () => {
+                // GIVEN
+                expect(comp.model).toBe(undefined);
+                expect(comp.viewMode).toBe(undefined);
+
+                // WHEN
+                comp.ngOnInit();
+
+                // THEN
+                expect(comp.model).toEqual(asset);
+                expect(comp.viewMode).toBe(true);
+            });
+        });
+    });
+});

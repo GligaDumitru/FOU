@@ -1,4 +1,4 @@
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 900px) {
   .app .mainNav {
     width: 100%;
     margin: 0 auto;
@@ -8,11 +8,11 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: reverse;
-        -ms-flex-direction: row-reverse;
-            flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
   .app .mainNav .mainList a span {
     display: none;
@@ -31,5 +31,9 @@
     width: 40%;
     float: left;
   }
+  .loginform {
+    width: 100%;
+  }
 }
+
 /*# sourceMappingURL=responsive.css.map */
