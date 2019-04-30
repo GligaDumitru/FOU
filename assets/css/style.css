@@ -277,6 +277,21 @@
   border-image-slice: 1;
 }
 
+.loginform textarea {
+  width: 100%;
+  display: block;
+  line-height: 30px;
+  font-size: 18px;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  background: transparent;
+  border-radius: 3px;
+  border-image-source: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  border-width: 1px;
+  border-image-slice: 1;
+  resize: vertical;
+}
+
 .loginform label {
   position: relative;
   top: 7px;
