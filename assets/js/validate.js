@@ -72,7 +72,6 @@ const checkInput = event => {
       }
     } else if (id === "userRePassword") {
       const pass = document.getElementById("userPassword");
-      console.log("in repass:", value === pass.value);
       errorColor =
         value.length >= 5
           ? value === pass.value

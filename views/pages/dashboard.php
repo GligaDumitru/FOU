@@ -2,16 +2,15 @@
 <html lang="en">
 <?php
 session_start();
-require_once("../../checkRoute.php");
-require_once("../../routes.php");
+require_once "../../checkRoute.php";
+require_once "../../routes.php";
 
-if (!isset($_SESSION['email']))
+if (!isset($_SESSION['email'])) {
     header('Location:login.php?controller=pages&action=login&error=noaccess');
+}
 
-$userName =  explode(' ', $_SESSION['name']);
+$userName = explode(' ', $_SESSION['name']);
 $userEmail = $_SESSION['email'];
-
-
 
 ?>
 
@@ -23,8 +22,10 @@ $userEmail = $_SESSION['email'];
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
+    <!-- <link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome-all.css" /> -->
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
 </head>
 
@@ -44,47 +45,186 @@ $userEmail = $_SESSION['email'];
                     </div>
                 </div>
                 <div class="nav-bar sidebar">
-                    <ul class="sidebar-list">
+                    <ul id="mainFolder" class="sidebar-list">
                         <li>
-                            <i class="fa fa-caret-right folder-show"></i>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span class="name">Foldere [5]</span>
-                                <!-- <span class="amount">10</span> -->
+
+                            <a href="#" class="listOfFolder">
+                                <div style="display: flex;align-items: baseline;">
+                                    <i id="caretChange" onclick="toggleFolder('subfolder level-1','caretChange');"
+                                        class="fa fa-caret-right folder-show"></i>
+
+                                    <i class="fas fa-folder-open"></i>
+                                    <span class="name">Foldere</span>
+                                </div>
+                                <div>
+                                    <span class="amount">10</span>
+                                </div>
+
                             </a>
+                            <ul class="subfolder level-1" style="display: none;">
+                                <li>
+                                    <a href="#" class="listOfFolder">
+                                        <div style="display: flex;align-items: baseline;">
+                                            <i id="caretChangeTest1"
+                                                onclick="toggleFolder('subfolder level-2 test1','caretChangeTest1');"
+                                                class="fa fa-caret-right folder-show"></i>
+
+                                            <i class="fas fa-folder-open"></i>
+                                            <span class="name">Foldere</span>
+                                        </div>
+                                        <div>
+                                            <span class="amount">10</span>
+                                        </div>
+
+                                    </a>
+                                    <ul class="subfolder level-2 test1" style="display: none;">
+                                        <li>
+                                            <a href="#" class="listOfFolder">
+                                                <div style="display: flex;align-items: baseline;">
+                                                    <i id="caretChangeTest11"
+                                                        onclick="toggleFolder('subfolder level-3 test11','caretChangeTest11');"
+                                                        class="fa fa-caret-right folder-show"></i>
+
+                                                    <i class="fas fa-folder-open"></i>
+                                                    <span class="name">Foldere</span>
+                                                </div>
+                                                <div>
+                                                    <span class="amount">10</span>
+                                                </div>
+
+                                            </a>
+                                            <ul class="subfolder level-3 test11" style="display: none;">
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="name">Folder 1</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="name">Folder 1</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="name">Folder 1</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-folder"></i>
+                                                        <span class="name">Folder 1</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="listOfFolder">
+                                        <div style="display: flex;align-items: baseline;">
+                                            <i id="caretChangeTest2"
+                                                onclick="toggleFolder('subfolder level-2 test2','caretChangeTest2');"
+                                                class="fa fa-caret-right folder-show"></i>
+
+                                            <i class="fas fa-folder-open"></i>
+                                            <span class="name">Foldere</span>
+                                        </div>
+                                        <div>
+                                            <span class="amount">10</span>
+                                        </div>
+
+                                    </a>
+                                    <ul class="subfolder level-2 test2" style="display: none;">
+                                        <!-- <li>
+                                            <a href="#" class="listOfFolder"
+                                                onclick="toggleFolder('subfolder level-1');">
+                                                <div style="display: flex;align-items: baseline;">
+                                                    <i id="caretChange" class="fa fa-caret-right folder-show"></i>
+
+                                                    <i class="fas fa-folder-open"></i>
+                                                    <span class="name">Foldere</span>
+                                                </div>
+                                                <div>
+                                                    <span class="amount">10</span>
+                                                </div>
+
+                                            </a>
+
+                                        </li> -->
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-folder"></i>
+                                                <span class="name">Folder 1</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- <li>
+                                    <a href="#">
+                                        <i class="fa fa-folder"></i>
+                                        <span class="name">Folder 1</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-folder"></i>
+                                        <span class="name">Folder 1</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-folder"></i>
+                                        <span class="name">Folder 1</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-folder"></i>
+                                        <span class="name">Folder 1</span>
+                                    </a>
+                                </li> -->
+                            </ul>
                         </li>
-                        <ul class="subfolder-list">
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span class="name">Folder 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span class="name">Folder 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span class="name">Folder 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span class="name">Folder 1</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-folder"></i>
-                                    <span class="name">Folder 1</span>
-                                </a>
-                            </li>
-                        </ul>
+
                         <li>
                             <a href="#">
                                 <i class="fa fa-clock"></i>
@@ -146,14 +286,22 @@ $userEmail = $_SESSION['email'];
             </div>
         </div>
         <div class="main-dashboard-page">
+
             <div class="main-options">
-                <button class="app button blue">
-                    <i class="fas fa-upload"></i> Upload
-                </button>
-                <button class="app button blue">Create</button>
-                <button class="app button blue">Delete</button>
-                <button class="app button blue">Share</button>
-                <button class="app button blue">Download</button>
+                <a href="/FOU/"> <button class="app button special red"> <i class="fas fa-home"></i> Home</button></a>
+                <a href="/FOU/views/pages/about.php"> <button class="app button special blue"><i
+                            class="far fa-question-circle"></i> Detalii</button></a>
+
+                <a href="#">
+                    <button class="app button special green">
+                        <i class="fas fa-upload"></i>
+                    </button>
+                </a>
+                <a href="#">
+                    <button class="app button special blue">
+                        <i class="fas fa-folder-plus 7x"></i>
+                    </button>
+                </a>
             </div>
             <div class="main-options second">
                 <div class="file-conter">
@@ -201,8 +349,584 @@ $userEmail = $_SESSION['email'];
                     </ul>
                 </div>
             </div>
+            <div class="main-options table-view">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th><i class="fas fa-id-card-alt"></i> Nr.</th>
+                            <th> <i class="fas fa-file-signature"></i> Nume</th>
+                            <th><i class="fab fa-typo3"></i> Extensie</th>
+                            <th><i class="fas fa-expand"></i> Marime</th>
+                            <th><i class="fas fa-file-code"></i> Tip</th>
+                            <th><i class="far fa-folder-open"></i> Number Director</th>
+                            <th>
+                                <i class="fas fa-share-alt"></i> Distribuie
+                            </th>
+                            <th>
+                                <i class="fas fa-download"></i> Descarca
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>22</td>
+                            <td>
+                                <button class="app button special red">
+                                    <i class="fas fa-share"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="app button special green">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
+    <script src="../../assets/js/main.js"></script>
 </body>
 
 </html>

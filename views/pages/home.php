@@ -10,7 +10,7 @@ if (isset($_GET['message'])) {
         require_once 'views/pages/thankyou.php';
     }
 }
-
+// echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 ?>
 
 <head>
@@ -31,8 +31,14 @@ if (isset($_GET['message'])) {
 </head>
 
 <body>
-
-    <header class="app mainHeader">
+    <!-- <div class="onLoad-loading-page" id="loading-page"></div> -->
+    <div id="loader">
+        <div class="loader-content">
+            <div id="shadow"></div>
+            <div id="box"></div>
+        </div>
+    </div>
+    <header class="app mainHeader hide" id="main-header">
         <nav class="app mainNav">
             <ul class="mainList">
                 <?php

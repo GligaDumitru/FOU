@@ -1,0 +1,48 @@
+1. Add in Windows/System32/drivers/etc/hosts the following (as administrator):
+100.64.10.171		gitlab.diamos.com
+100.64.10.171		gitlab
+100.64.10.121		gitsrv01.diamos.com
+100.64.10.121		gitsrv01
+100.64.10.156		devsrv07 
+100.64.10.156		devsrv07.diamos.com
+100.64.10.156		devsrv07.diamos.com
+100.64.10.157		devsrv08
+100.64.10.157		devsrv08.diamos.com
+100.64.10.138		vm009 
+100.64.10.138		vm009.diamos.com
+
+100.64.10.156		stagesrv07 
+100.64.10.156		stagesrv07.diamos.com
+100.64.10.156		stagesrv07.diamos.com
+100.64.10.157		stagesrv08
+100.64.10.157		stagesrv08.diamos.com
+
+2. Jira & Confluence can be reached at:
+https://jira.diamos.com/jira (current board used - https://jira.diamos.com/jira/secure/RapidBoard.jspa?rapidView=5&view=planning)
+https://jira.diamos.com/confluence
+
+
+5. GitLab can be reached at:
+https://gitlab.diamos.com/
+
+
+
+5.2. Docker setup (docker-compose) for modules dependencies:
+https://gitlab.diamos.com/kh/dev-realms
+
+
+
+4. Jenkins can be reached at: http://100.64.10.156:8080/jenkins/
+
+
+
+5. Nexus can be reached at: http://gitsrv01.diamos.com:8081/nexus
+
+
+6. SonarQube can be reached at: http://100.64.10.106:9000
+
+
+7. Dev Environments can be reached at: https://devsrv08:{port} where {port} is the module port
+You can find the URLs and Ports mapping at: https://jira.diamos.com/confluence/pages/viewpage.action?pageId=10814023
+
+8. Diamos Style Guide (outdated) can be reached at: https://jira.diamos.com/confluence/display/DIAM/DIAMOS+Styleguide+Startseite

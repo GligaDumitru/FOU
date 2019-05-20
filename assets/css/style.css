@@ -11,15 +11,21 @@
   background-color: #cccccc;
   height: 500px;
   background-position: center;
-  /* background-repeat: no-repeat; */
   background-size: cover;
   position: relative;
   background-repeat: no-repeat;
+  transition-duration: 0.5s;
 }
 
 .app.mainNav {
   width: 70%;
   margin: 0 auto;
+}
+
+.hide {
+  transform: translateY(100%);
+  opacity: 0;
+  display: none !important;
 }
 
 .app.mainNav .mainList {
@@ -437,7 +443,17 @@
   color: #fff;
 }
 
-.nav-bar.sidebar .sidebar-list .subfolder-list li a {
+.nav-bar.sidebar .sidebar-list .subfolder li a {
+  margin-left: 5px;
+}
+
+.nav-bar.sidebar .sidebar-list .subfolder {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.nav-bar.sidebar .sidebar-list .subfolder.level-1 li a {
   margin-left: 25px;
 }
 
@@ -448,7 +464,7 @@
 .nav-bar.sidebar .sidebar-list li i.folder-show {
   display: block;
   float: left;
-  padding: 5px 10px 0 10px;
+  padding: 0 10px 0 5px;
 }
 
 .nav-bar.sidebar .sidebar-list li i.folder-show:hover {
@@ -459,7 +475,7 @@
   display: block;
   float: left;
   padding: 5px 10px 15px 10px;
-  width: 80%;
+  width: -webkit-fill-available;
   color: #aaa;
   font-size: 14px;
   text-decoration: none;
@@ -672,14 +688,26 @@ li[data-view*="view"]:hover ul[data-view*="view"] {
 table {
   width: 100%;
   font-family: "Roboto", sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 table tr {
   text-align: center;
 }
 
-table tr:hover {
-  background: #747879;
+.table-view {
+  max-height: 800px;
+  overflow: overlay;
+  padding-right: 5px;
+}
+
+table tbody tr:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: whitesmoke;
+  cursor: pointer;
 }
 
 table thead th {
@@ -687,6 +715,11 @@ table thead th {
   color: #fff;
   font-size: 20px;
   padding: 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table thead tr:first-child {
+  border-radius: 10px 0 0 0;
 }
 
 table tbody tr td {
@@ -694,6 +727,7 @@ table tbody tr td {
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   font-family: "Roboto", sans-serif;
 }
 
@@ -862,4 +896,24 @@ table tbody tr td {
 .closeSuccessModalContainer i {
   float: right;
   font-size: 20px;
+}
+
+.listOfFolder {
+  display: flex !important;
+  justify-content: space-between;
+  align-content: center;
+  padding: 10px !important;
+  align-items: center;
+}
+
+.listOfFolder:first {
+  display: flex;
+  align-items: baseline;
+}
+
+.nav-bar.sidebar .sidebar-list .subfolder.level-2 li a {
+  margin-left: 60px !important;
+}
+.nav-bar.sidebar .sidebar-list .subfolder.level-3 li a {
+  margin-left: 100px !important;
 }

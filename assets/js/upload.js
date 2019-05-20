@@ -1,3 +1,11 @@
+
+document.getElementById('main-header').classList.add("hide");
+document.getElementById('loader').classList.add("show"); 
+window.onload  = () => {
+  // document.getElementById('loader').classList.remove("show");
+  document.getElementById('main-header').classList.remove("hide");
+}
+
 var dragAndDropEnable = function() {
   var div = document.createElement("div");
   return (
@@ -7,8 +15,9 @@ var dragAndDropEnable = function() {
   );
 };
 
+
+
 if (dragAndDropEnable) {
-  console.log("it is ok to drag and drop");
 } else {
   document.getElementById("optionToDragAndDrop").style.display = "none";
 }
@@ -17,11 +26,9 @@ document.getElementById("file") && document.getElementById("file").add;
 // document.getElementByID('fileInputId');
 document.getElementById("file") &&
   document.getElementById("file").addEventListener("click", () => {
-    console.log(document.getElementById("file").value);
   });
 
 document.getElementById("submitFile").disabled = true;
-console.log();
 
 const handleChangeInput = event => {
   let value = event.target.value;
@@ -60,6 +67,5 @@ const closeContainer = container => {
 };
 
 const redirectToPage = page => {
-  console.log('redirectToPage');
-  location.replace("http://localhost/FOU/" + page);
+  location.replace(window.location.href + page);
 };
