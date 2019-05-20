@@ -42,26 +42,32 @@ require_once("../../routes.php");
         <div class="row">
             <div class="col center">
 
-                <form class="loginform" action="/FOU/?controller=auth&action=signin" method="POST" onsubmit="return validateForm();">
+                <form action="/FOU/?controller=fou&action=feedback" class="loginform" method="POST" onsubmit="return validateSignupForm();">
                     <span class="titleLogin">
-                        Intra in cont
+                        Contact Form
                     </span>
                     <div class="group-items">
-                        <label for="emailUser">Email</label>
-                        <input type="email" maxlength="25" id="emailUser" minlength=5 name="email" onkeyup="checkInput(event);" maxlength="100" required />
+                        <label for="userName">Nume Prenume</label>
+                        <input type="name" name="userName" id="userName" maxlength="45" minlength=5 onkeyup="checkInput(event);" required />
                     </div>
                     <div class="group-items">
-                        <label for="passwordUser">Password</label>
-                        <input type="password" name="password" id="passwordUser" minlength=5 onkeyup="checkInput(event);" maxlength="12" required />
+                        <label for="userEmail">Email</label>
+                        <input type="email" maxlength="25" id="userEmail" minlength="5" name="userEmail" onkeyup="checkInput(event);" maxlength="100" required />
                     </div>
-                    <div class="group-items options">
-                        <a class="left" href="register.php?controller=pages&action=register">
-                            Inregistrare
-                        </a>
-                        <a class="right" href="recoverPassword.php">
-                            Am uitat parola
-                        </a>
+                    <div class="group-items">
+                        <label for="userPassword">Message</label>
+                        <textarea type="text" name="userMessage" id="userMessage" rows=8 maxlength="300" onkeyup="checkInput(event);" required ></textarea>
                     </div>
+                    <div class="errorContainerForCheck" id="errorContainerIdForCheck" style="display:none">
+                        <span class="errorMessageForCheck"></span>
+                        <span class="closeError" title="Close Message" id="closeErrorMessageForCheck"><i class="far fa-times-circle"></i></span>
+                    </div>
+                    <div class="group-items">
+                        <button class="app button submitLogin">
+                            Submit
+                        </button>
+                    </div>
+
                     <?php
                     if (isset($_GET['error'])) {
                         $errorMsg = "";
@@ -80,34 +86,13 @@ require_once("../../routes.php");
                             </div>';
                     }
                     ?>
-                    <?php
-                    if (isset($_GET['success'])) {
-                        $successMsg = "";
-                        switch ($_GET['success']) {
-                            case 'account':
-                                $successMsg = "Account created!Now login to account!";
-                                break;
-                           
-                        }
-                        echo '
-                            <div class="successContainer" id="successContainerId">
-                                <span class="successMessage">' . $successMsg . '</span>
-                                <span class="closeSuccess" title="Close Message" id="closeSuccessMessage"><i class="far fa-times-circle"></i></span>
-                            </div>';
-                    }
-                    ?>
-                    <div class="group-items">
-                        <a href="dashboard.html">
-                            <button type="submit" id="submitLogin" class="app button submitLogin disabledBtn">
-                                Intra in cont
-                            </button>
-                        </a>
-                    </div>
+
                 </form>
             </div>
         </div>
     </header>
-    <script src="../../assets/js/validate.js"></script>
 </body>
+<script src="../../assets/js/validate.js"></script>
+
 
 </html>

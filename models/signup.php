@@ -6,9 +6,9 @@ function createUser($name, $email, $pass)
 
     $sql = " INSERT INTO users (email,password,name) VALUES ('$email','$pass','$name');";
 
-        if($db->query($sql)){
-            return true;
-        }else{
-            return $db->errorInfo();
-        }
+    if ($db->query($sql)) {
+        return true;
+    } else {
+        return $db->errorInfo();
     }
+}

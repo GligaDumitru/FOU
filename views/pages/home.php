@@ -97,7 +97,7 @@ if ($isLogged === true) {
             <a href="#" class="youtube" data-title="youtube"><i class="fa fa-youtube"></i></a>
         </div>
         <div class="icon-bar rightPosition">
-            <a href="#" class="feedback" title="Feedback"><i class="material-icons">feedback</i></a>
+            <a href="/FOU/views/pages/feedback.php" class="feedback" title="Feedback"><i class="material-icons">feedback</i></a>
         </div>
         <div class="row">
             <div class="formContainerUpload">

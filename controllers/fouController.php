@@ -50,13 +50,12 @@ class FouController
         }
 
         return $bytes;
-
     }
 
     public function downloadfile()
     {
         if (isset($_GET['file'])) {
-            
+
             require_once 'models/file.php';
             $fileToken = $_GET['file'];
             $db = Database::getInstance();
@@ -66,7 +65,6 @@ class FouController
             $name = $file['name'];
 
             require_once 'views/pages/downloadPage.php';
-
         }
     }
 
@@ -113,7 +111,6 @@ class FouController
                             {
                                 require_once 'views/pages/successUploadFile.php';
                             }
-
                         }
                     }
                 }
@@ -123,8 +120,24 @@ class FouController
                     require_once 'views/pages/errorPopup.php';
                 }
             }
-
         }
+    }
+    public function feedback()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $userN = $_POST['userName'];
+            $userE = $_POST['userEmail'];
+            $userM = $_POST['userMessage'];
+            
+            require_once 'models/models.php';
+            $result = Model::addFeedback($userN, $userE, $userM);
+            if ($result === true) {
+                // go to home
+                header("Location:/FOU/");
+            } else {
+                header("Location:/FOU/views/pages/error.php?error=dbError.$result");
+            }
+        }
     }
 }
