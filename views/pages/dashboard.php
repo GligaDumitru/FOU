@@ -6,6 +6,7 @@ require_once "../../checkRoute.php";
 require_once "../../routes.php";
 require_once '../../controllers/fouController.php';
 $totalItems = 0;
+$searchName = 'all';
 if (!isset($_SESSION['email'])) {
     header('Location:login.php?controller=pages&action=login&error=noaccess');
 }
@@ -25,10 +26,18 @@ if (isset($_GET['shareFile'])) {
     require_once 'shareFile.php';
 }
 
+if (isset($_GET['q'])) {
+    $searchName = $_GET['q'];
+}
+
 if (isset($_GET['message'])) {
     if ($_GET['message'] == 'thankyou') {
         require_once 'thankyou.php';
     }
+}
+if (isset($_GET['editPopup']) && isset($_GET['file'])) {
+
+    require_once 'editPopup.php';
 }
 
 $viewFileBy = "";
@@ -46,7 +55,7 @@ if (isset($_GET['filterFileBy'])) {
 
 $userName = explode(' ', $_SESSION['name']);
 $userEmail = $_SESSION['email'];
-$allFiles = FouController::getFiles('all',$viewFileBy,$sortFileBy,$filterFileBy);
+$allFiles = FouController::getFiles($searchName, $viewFileBy, $sortFileBy, $filterFileBy);
 
 $totalItems = count($allFiles);
 ?>
@@ -59,6 +68,8 @@ $totalItems = count($allFiles);
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
+    <link rel="stylesheet" href="https://yaireo.github.io/tagify/dist/tagify.css" />
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
@@ -68,7 +79,6 @@ $totalItems = count($allFiles);
 <body>
     <?php
 require_once 'loader.php';?>
-    <!-- <header class="app mainHeader hide" > -->
     <div class="app grid row hide fadeIn animated" style="min-width:1120px;" id="main-header">
         <div class="col6 no-padding">
             <div class="app-menu-primary">
@@ -168,39 +178,122 @@ require_once 'loader.php';?>
                         <i class="fas fa-folder-plus 7x"></i>
                     </button>
                 </a>
+
+                <input type="text" id="inputSearch" value="<?php echo $searchName === 'all' ? '' : $searchName; ?>"
+                    class="app button special input" placeholder="Cauta fisiere dupa nume..">
+                <button onclick="searchFiles('inputSearch');" class="app button special green">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
             <div class="main-options second">
                 <div class="file-conter">
                     <span class="number-of-files"><?php echo $totalItems; ?></span>
                     <span> files</span>
+
                 </div>
+                <div class="filterContainer">
+                    <?php
+if ($sortFileBy !== "") {
+    echo '
+                                    <span class="filter sort">
+                                        Sortare :
+                                        ' . explode('_', $sortFileBy)[0] . ' ' . explode('_', $sortFileBy)[1] . '
+                                    </span>
+                                ';
+}
+if ($searchName !== "" && $searchName !== "all") {
+    echo '
+                                    <span class="filter sort">
+                                        Cautare :
+                                        ' . $searchName . '
+                                    </span>
+                                ';
+}
+if ($filterFileBy !== "") {
+    echo '
+                                    <span class="filter filterBy">
+                                        Extensie:
+                                        ' . explode('_', $filterFileBy)[0] . '
+                                    </span>
+                                ';
+}
+if ($viewFileBy !== "") {
+    echo '
+                                    <span class="filter view">
+                                    Afisare dupa:
+                                        ' . explode('_', $viewFileBy)[0] . '
+                                    </span>
+                                ';
+}
+if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== "" || $searchName !== "all") {
+    echo '
+                                    <a href="/FOU/views/pages/dashboard.php">
+                                    <button class="app button special" title="Clear All Fields">
+                                    <i class="far fa-times-circle"></i>
+                                    </button>
+                                </a>';
+}
+
+?>
+                </div>
+
+
                 <div class="view-options">
                     <ul class="view-list-options">
                         <li data-view="view">
                             <a href="#"><i class="fas fa-th-list"></i> Vezi dupa</a>
                             <ul data-view="view" class="view-mode">
-                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','ASC');"><i class="fas fa-sort-numeric-down"></i> Created at ASC</a></li>
-                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','DESC');"><i class="fas fa-sort-numeric-up"></i> Created at DESC</a></li>
-                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','ASC');" class="active-filter"><i class="fas fa-sort-numeric-down"></i> Updated at ASC</a></li>
-                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','DESC');"><i class="fas fa-sort-numeric-up"></i> Updated at DESC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','ASC');"><i
+                                            class="fas fa-sort-numeric-down"></i> Created at ASC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','DESC');"><i
+                                            class="fas fa-sort-numeric-up"></i> Created at DESC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','ASC');"
+                                        class="active-filter"><i class="fas fa-sort-numeric-down"></i> Updated at
+                                        ASC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','DESC');"><i
+                                            class="fas fa-sort-numeric-up"></i> Updated at DESC</a></li>
                             </ul>
                         </li>
                         <li data-view="sort">
                             <a href="#"><i class="fas fa-sort-alpha-up"></i> Sort</a>
                             <ul data-view="sort" class="view-mode">
-                                <li><a href="#" onclick="addFilter('sortFileBy','name','ASC');" class="<?php if($sortFileBy == 'name_ASC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-down"></i> Nume ASC</a></li>
-                                <li><a href="#" onclick="addFilter('sortFileBy','name','DESC');" class="<?php if($sortFileBy == 'name_DESC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-up"></i> Nume DESC</a></li>
-                                <li><a href="#" onclick="addFilter('sortFileBy','size','ASC');"  class="<?php if($sortFileBy == 'size_ASC') echo 'active-filter'; ?>"><i class="fas fa-sort-numeric-down"></i> Marime ASC</a></li>
-                                <li><a href="#" onclick="addFilter('sortFileBy','size','DESC');" class="<?php if($sortFileBy == 'size_DESC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-up"></i> Marime DESC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','name','ASC');" class="<?php if ($sortFileBy == 'name_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="fas fa-sort-numeric-down"></i> Nume ASC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','name','DESC');" class="<?php if ($sortFileBy == 'name_DESC') {
+    echo 'active-filter';
+}
+?>"><i class="fas fa-sort-numeric-up"></i> Nume DESC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','size','ASC');" class="<?php if ($sortFileBy == 'size_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="fas fa-sort-numeric-down"></i> Marime ASC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','size','DESC');" class="<?php if ($sortFileBy == 'size_DESC') {
+    echo 'active-filter';
+}
+?>"><i class="fas fa-sort-numeric-up"></i> Marime DESC</a></li>
                             </ul>
                         </li>
                         <li data-view="filters">
                             <a href="#"><i class="fas fa-filter"></i> Filter</a>
                             <ul data-view="filters" class="view-mode">
-                                <li><a href="#" onclick="addFilter('filterFileBy','txt');"  class="<?php if($filterFileBy == 'txt_ASC') echo 'active-filter'; ?>"><i class="far fa-file-code"></i> txt</a></li>
-                                <li><a href="#" onclick="addFilter('filterFileBy','html');" class="<?php if($filterFileBy == 'html_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> html</a></li>
-                                <li><a href="#" onclick="addFilter('filterFileBy','docs');" class="<?php if($filterFileBy == 'docs_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> docs</a></li>
-                                <li><a href="#" onclick="addFilter('filterFileBy','ppt');" class="<?php if($filterFileBy == 'ppt_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> ppt</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','txt');" class="<?php if ($filterFileBy == 'txt_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="far fa-file-code"></i> txt</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','html');" class="<?php if ($filterFileBy == 'html_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="far fa-file-code"></i> html</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','docs');" class="<?php if ($filterFileBy == 'docs_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="far fa-file-code"></i> docs</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','ppt');" class="<?php if ($filterFileBy == 'ppt_ASC') {
+    echo 'active-filter';
+}
+?>"><i class="far fa-file-code"></i> ppt</a></li>
                             </ul>
                         </li>
                         <!-- <li data-view="notifications">
@@ -220,6 +313,8 @@ require_once 'view-table.php';
         </div>
 
     </div>
+    <script src="https://yaireo.github.io/tagify/dist/tagify.js"></script>
+
     <script src="../../assets/js/upload.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/validate.js"></script>

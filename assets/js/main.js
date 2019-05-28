@@ -25,6 +25,18 @@ const getVariablesFromUrl = () => {
   return arrayOfVars;
 };
 
+var input2 = document.querySelector("textarea[name=tagsFile]");
+
+tagify2 = new Tagify(input2);
+
+const searchFiles = str => {
+  let val = document.getElementById(str).value;
+  val &&
+    location.replace(
+      window.location.origin + window.location.pathname + "?q=" + val
+    );
+};
+
 // column from DB, type ? 'ASC' : 'DESC'
 const addFilter = (fileBy, column, type = "ASC") => {
   Object.prototype.isEmpty = function() {

@@ -265,6 +265,16 @@
   font-family: "Roboto", sans-serif;
 }
 
+.loginform.editFileForm {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  font-family: "Roboto", sans-serif;
+}
+
 .loginform:hover {
   background: rgba(242, 242, 242, 0.9);
 }
@@ -293,9 +303,6 @@
   font-family: "Roboto", sans-serif;
   background: transparent;
   border-radius: 3px;
-  border-image-source: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
-  border-width: 1px;
-  border-image-slice: 1;
   resize: vertical;
 }
 
@@ -557,6 +564,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  height: 100px;
 }
 
 .main-dashboard-page
@@ -921,9 +929,9 @@ table tbody tr td {
   border: 1px solid rgb(0, 255, 42) !important;
 }
 
-.closeSuccessModalContainer {
+/* .closeSuccessModalContainer {
   height: 0;
-}
+} */
 
 .closeSuccessModalContainer i {
   float: right;
@@ -974,4 +982,22 @@ table tbody tr td {
 }
 .nav-bar.sidebar .sidebar-list .subfolder.level-3 li a {
   margin-left: 100px !important;
+}
+
+.filterContainer .filter {
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 5px;
+  color: #000;
+  margin: 0 10px;
+}
+
+.filterContainer .filter.sort {
+  color: red;
+}
+.filterContainer .filter.filterBy {
+  color: green;
+}
+.filterContainer .filter.view {
+  color: rgb(87, 58, 167);
 }

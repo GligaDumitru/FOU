@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <table>
     <thead>
         <tr>
@@ -26,10 +22,8 @@
             </th>
         </tr>
     </thead>
-    <!-- <span class="no-files">Momentan nu sunt fisiere incarcate....</span> -->
     <tbody>
         <?php
-
 
 if (count($allFiles) === 0) {
     echo '<tr><span class="popup-container popupSpecialType1"><img src="https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png"> Momentan nu sunt fisiere disponibile...</span></tr>';
@@ -71,20 +65,22 @@ foreach ($allFiles as $file) {
             </a>
         </td>
         <td>
-        <a href="?deletePopup=true&file=' . $file['token'] . '">
-            <button class="app button special red">
-                <i class="fas fa-minus-circle"></i>
-            </button>
-        </a>
+            <a href="?deletePopup=true&file=' . $file['token'] . '">
+                <button class="app button special red">
+                    <i class="fas fa-minus-circle"></i>
+                </button>
+            </a>
         </td>
         <td>
-            <button class="app button special ">
-            <i class="fas fa-pen"></i>
-            </button>
+            <a href="?editPopup=true&file=' . $file['token'] . '">
+                <button class="app button special ">
+                    <i  class="fas fa-pen"></i>
+                </button>
+            </a>
         </td>
+
     </tr>
     ';
-    // $totalItems = $i;
 }
 echo ' </tbody>';
 ?>

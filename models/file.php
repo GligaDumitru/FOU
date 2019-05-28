@@ -33,6 +33,20 @@ class File
         $this->$origin = $origin;
     }
 
+    public static function updateFileInDb($name, $ext, $id, $desc, $tags)
+    {
+        $db = Database::getInstance();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = "UPDATE files SET name='$name',ext='$ext',description='$desc',tags='$tags' WHERE id=$id";
+
+        if ($db->query($sql)) {
+            return true;
+        } else {
+            return $db->errorInfo();
+        }
+    }
+
     public static function getFileByToken($token)
     {
         $db = Database::getInstance();
@@ -47,7 +61,12 @@ class File
             "path" => $result['path'],
             "folderName" => $result['folderName'],
             "token" => $result['token'],
-            "origin" => $result['origin']);
+            "origin" => $result['origin'],
+            "createdAt" => $result['createdAt'],
+            "updatedAt" => $result['updatedAt'],
+            "description" => $result['description'],
+            "tags" => $result['tags'],
+        );
     }
 
     public static function deleteFileByToken($token)
@@ -61,24 +80,32 @@ class File
         }
     }
 
-    public static function getFiles($tableName, $origin, $sortFileBy, $sortType, $type, $typeOfFile, $viewDate)
+    public static function getFiles($tableName, $origin, $sortFileBy = "", $sortType = "", $type = "", $typeOfFile = "", $viewDate = "")
     {
         $db = Database::getInstance();
         $list = [];
         $newList = array();
-        $sql = "SELECT * FROM " . $tableName . " WHERE origin= '$origin' ";
+        $q = "";
+        if ($tableName === 'files') {
+            $sql = "SELECT * FROM " . $tableName . " WHERE origin= '$origin' ";
+        } else {
+            $sql = "SELECT * FROM files WHERE origin= '$origin' ";
+            $q = explode('_', $tableName)[1];
+        }
 
         // if($sortType != ""){
         //     $sql = $sql . "ORDER BY ". $sortType .' '.$sortType;
         // }
-        if($typeOfFile != ""){
-            $sql = $sql ." AND ext= '$typeOfFile' ";
+        if ($q !== "") {
+            $sql = $sql . " AND name LIKE '%" . strtolower($q) . "%' ";
+        }
+
+        if ($typeOfFile != "") {
+            $sql = $sql . " AND ext= '$typeOfFile' ";
         }
         if ($sortFileBy != "") {
-            // createdAT || updatedAt not done ORDER BY supplier_id DESC
             $sql = $sql . "ORDER BY " . $sortFileBy . " " . $sortType;
         }
-        // $sql->execute();
         $req = $db->query($sql);
         foreach ($req->fetchAll() as $result) {
             array_push($newList,
@@ -92,16 +119,6 @@ class File
                     "token" => $result['token'],
                     "origin" => $result['origin'])
             );
-            // $list[] = new File(
-            //     $file['id'],
-            //     $file['name'],
-            //     $file['ext'],
-            //     $file['size'],
-            //     $file['type'],
-            //     $file['path'],
-            //     $file['folderName'],
-            //     $file['token'],
-            //     $file['origin']);
         }
         return $newList;
     }

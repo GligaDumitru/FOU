@@ -18,7 +18,7 @@ class FouController
         return sha1($dirArray[0]);
     }
 
-    public static function getFiles($case,$view,$sort,$filter)
+    public static function getFiles($case, $view, $sort, $filter)
     {
 
         $sortFileBy = "";
@@ -26,24 +26,27 @@ class FouController
         $typeOfFile = "";
         $sortType = "";
         $viewDate = "";
-        if($view!=""){
-            $viewDate = explode("_",$view)[0];
-            $type = explode("_",$view)[1];
+        if ($view != "") {
+            $viewDate = explode("_", $view)[0];
+            $type = explode("_", $view)[1];
         }
-        if($sort!=""){
-            $ar = explode("_",$sort);
+        if ($sort != "") {
+            $ar = explode("_", $sort);
             $sortFileBy = $ar[0];
             $sortType = $ar[1];
         }
-        if($filter!=""){
-            $typeOfFile = explode('_',$filter)[0];
+        if ($filter != "") {
+            $typeOfFile = explode('_', $filter)[0];
         }
-        
+
         require_once '../../models/file.php';
         switch ($case) {
             case 'all':{
-                    return File::getFiles('files', $_SESSION['email'],$sortFileBy,$sortType,$type,$typeOfFile,$viewDate);
+                    return File::getFiles('files', $_SESSION['email'], $sortFileBy, $sortType, $type, $typeOfFile, $viewDate);
                 }
+            default:{
+                return File::getFiles('files_'.$case,$_SESSION['email'], $sortFileBy, $sortType, $type, $typeOfFile, $viewDate);
+            }
         }
     }
 
@@ -74,15 +77,16 @@ class FouController
         return $res;
     }
 
-    public function deleteFile(){
-        if(isset($_GET['file'])){
+    public function deleteFile()
+    {
+        if (isset($_GET['file'])) {
             require_once '../../models/file.php';
-            if(File::deleteFileByToken($_GET['file']) === true){
+            if (File::deleteFileByToken($_GET['file']) === true) {
                 header('Location:/FOU/views/pages/dashboard.php?success=deleted');
-            }else{
+            } else {
                 header('Location:/FOU/views/pages/dashboard.php?error=noDelete');
             }
-        }else{
+        } else {
             header('Location:/FOU/views/pages/dashboard.php?error=noDelete');
         }
     }
@@ -158,40 +162,69 @@ class FouController
         return $bytes;
     }
 
-    public function requireFileCheckPath($file){
-        require_once is_file($file) ? $file : '../../'.$file;
+    public function requireFileCheckPath($file)
+    {
+        require_once is_file($file) ? $file : '../../' . $file;
+    }
+
+    public function getFileDetailsByToken($file)
+    {
+        $this->requireFileCheckPath('models/file.php');
+        return File::getFileByToken($file);
     }
 
     public function downloadfile()
     {
         if (isset($_GET['file'])) {
             $this->requireFileCheckPath('models/file.php');
-            // require_once is_file('models/file.php') ? 'models/file.php' : '../../'.'models/file.php';
-            // require_once 'models/file.php' || require_once '../../models/file.php';
             $fileToken = $_GET['file'];
             $db = Database::getInstance();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $file = File::getFileByToken($fileToken);
             $size = FouController::formatSizeUnits($file['size']);
             $name = $file['name'];
-            // $this->requireFileCheckPath('views/pages/downloadPage.php');
             require_once is_file('views/pages/downloadPage.php') ? 'views/pages/downloadPage.php' : 'downloadPage.php';
-            // require_once 'views/pages/downloadPage.php';
+        }
+    }
+    public function formatData($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    public function updateFile(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $fileName = $this->formatData($_POST['nameFile']);
+            $extFile = $this->formatData($_POST['extFile']);
+            $token = $this->formatData($_GET['file']);
+            $description = $this->formatData($_POST['descFile']);
+            $tagsFile = $this->formatData($_POST['tagsFile']);
+
+            $this->requireFileCheckPath('models/file.php');
+            $result = File::updateFileInDb($fileName, $extFile, $token, $description, $tagsFile);
+            if ($result === true) {
+                // go to dashboard
+                header("Location:/FOU/views/pages/dashboard.php?success=edited");
+            } else {
+                header("Location:/FOU/views/pages/dashboard.php?error=edited");
+            }
         }
     }
 
     public function upload()
     {
         $pathSpace = '';
-        if(isset($_SESSION['email'])){
+        if (isset($_SESSION['email'])) {
 
             $folderNameForUser = explode('@', $_SESSION['email']);
-            $folderNameForUser = sha1($folderNameForUser[0]).'/';
-            
-        }else{
+            $folderNameForUser = sha1($folderNameForUser[0]) . '/';
+
+        } else {
             $folderNameForUser = '';
         }
-       
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_FILES['files'])) {
 
@@ -231,10 +264,8 @@ class FouController
                         if (empty($errors)) {
                             require_once $pathSpace . 'models/upload.php';
                             $generateUniqToken = $this->generateUniq($fileNameWithoutExt, 4);
-                            $addToDbResult = addAnonimFile($file, $fileNameWithoutExt, $fileExt, $fileSize, $fileType, $newFileName, $generateUniqToken,$folderNameForUser);
-                            if (move_uploaded_file($fileTmp, $file) && $addToDbResult === true)
-                            // header("Location:/FOU/?upload=success");
-                            {
+                            $addToDbResult = addAnonimFile($file, $fileNameWithoutExt, $fileExt, $fileSize, $fileType, $newFileName, $generateUniqToken, $folderNameForUser);
+                            if (move_uploaded_file($fileTmp, $file) && $addToDbResult === true) {
                                 require_once $pathSpace . 'views/pages/successUploadFile.php';
                             } else {
                                 header("Location:/FOU/?upload=failed");

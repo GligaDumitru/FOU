@@ -133,7 +133,6 @@ class AuthController
             $email = $this->formatData($_POST['email']);
             $name = $this->formatData($_POST['name']);
             $password = md5($this->formatData($_POST['password']));
-
             require_once 'models/signup.php';
             $result = createUser($name, $email, $password);
             if ($result === true) {

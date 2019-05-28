@@ -17,18 +17,3 @@ class Database
         return self::$instance;
     }
 }
-
-
-
-
-// $conn = new mysqli($host, $user, $pass, $db);
-// if ($conn->connect_error) {
-//     die('Connection erorr:' . $conn->connect_error);
-// }
-
-// $result = $conn->query('select * from users');
-// $results = $result->fetch_all(MYSQLI_ASSOC);
-
-// print_r($results);
-
-// $conn->close();
