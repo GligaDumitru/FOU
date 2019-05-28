@@ -279,8 +279,9 @@
   background: transparent;
   border-radius: 3px;
   border-image-source: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
-  border-width: 1px;
+  /* border-width: 1px; */
   border-image-slice: 1;
+  border-radius: 5px;
 }
 
 .loginform textarea {
@@ -324,17 +325,8 @@
 }
 
 .group-items .app.button.submitLogin {
-  border: 1px solid transparent;
-  background: transparent;
   margin: 50px 0;
   border-radius: 3px;
-  border-image-source: linear-gradient(
-    to top,
-    #007adf 0%,
-    #00ecbc 100%
-  ) !important;
-  border-width: 1px;
-  border-image-slice: 1;
   display: block;
   width: 100%;
   line-height: 30px;
@@ -342,6 +334,8 @@
   padding: 10px;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
+  background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+  color: #fff;
 }
 
 .group-items .app.button.submitLogin:hover {
@@ -353,7 +347,7 @@
     to(#00ecbc)
   );
   background: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.726);
 }
 
 .group-items.options {
@@ -540,6 +534,7 @@
   align-items: baseline;
   max-height: 60px;
   overflow: initial;
+  height: 60px;
 }
 
 .main-dashboard-page .main-options.second .file-conter {
@@ -570,11 +565,21 @@
   .view-list-options
   li
   .view-mode {
-  background: #f2f2f2;
-  min-width: 100px;
+  background: #f2f2f2f3;
+  min-width: 150px;
   position: relative;
   top: 0px;
   left: -20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+ul.view-mode li a i {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px #00000057;
 }
 
 .main-dashboard-page
@@ -584,10 +589,11 @@
   li
   a {
   display: inline-block;
-  padding: 10px;
+  padding: 15px 20px;
   color: #747879;
   text-decoration: none;
-  width: 130px;
+  min-width: 130px;
+  width: 100%;
 }
 
 .main-dashboard-page
@@ -595,31 +601,37 @@
   .view-options
   .view-list-options
   li
-  a:hover {
+  a:hover,
+.active-filter {
   color: #000;
+  background: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 ul[data-view*="notifications"],
 ul[data-view*="filter"],
 ul[data-view*="sort"],
 ul[data-view*="view"] {
-  display: none;
+  display: block;
+  visibility: hidden;
 }
 
 li[data-view*="notifications"]:hover ul[data-view*="notifications"] {
-  display: block;
+  /* display: block; */
+  visibility: visible;
 }
 
 li[data-view*="sort"]:hover ul[data-view*="sort"] {
-  display: block;
+  visibility: visible;
 }
 
 li[data-view*="filter"]:hover ul[data-view*="filter"] {
-  display: block;
+  visibility: visible;
 }
 
 li[data-view*="view"]:hover ul[data-view*="view"] {
-  display: block;
+  visibility: visible;
 }
 
 .icon-bar {
@@ -853,6 +865,17 @@ table tbody tr td {
   padding: 30px;
 }
 
+.modalContainer .modalBody.large {
+  min-width: 80% !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.modalContainer .modalBody.large .row {
+  width: 100%;
+}
+
 .modalContainer .modalBody .titleSuccess {
   font-size: 30px;
   color: gray;
@@ -899,18 +922,21 @@ table tbody tr td {
 }
 
 .closeSuccessModalContainer {
-  width: 100%;
-  display: block;
-  margin: 20px 0;
+  height: 0;
+}
+
+.closeSuccessModalContainer i {
+  float: right;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 50%;
+  border: 1px solid transparent;
 }
 
 .closeSuccessModalContainer i:hover {
   cursor: pointer;
   color: red;
-}
-.closeSuccessModalContainer i {
-  float: right;
-  font-size: 20px;
+  border: 1px solid #f2f2f2;
 }
 
 .listOfFolder {
@@ -924,6 +950,23 @@ table tbody tr td {
 .listOfFolder:first {
   display: flex;
   align-items: baseline;
+}
+
+.popup-container {
+  position: absolute;
+  max-width: 800px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+.popupSpecialType1 {
+  padding: 20px;
+  font-size: 40px;
+  color: #b9d1d4;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 
 .nav-bar.sidebar .sidebar-list .subfolder.level-2 li a {

@@ -39,18 +39,6 @@ class File
         $sql = $db->prepare('SELECT * FROM files WHERE token = :token');
         $sql->execute(array(':token' => $token));
         $result = $sql->fetch();
-        // return new File(
-        //     $result['id'],
-        //     $result['name'],
-        //     $result['ext'],
-        //     $result['size'],
-        //     $result['type'],
-        //     $result['path'],
-        //     $result['folderName'],
-        //     $result['token'],
-        //     $result['origin']
-        // );
-
         return array("id" => $result['id'],
             "name" => $result['name'],
             "ext" => $result['ext'],
@@ -60,6 +48,62 @@ class File
             "folderName" => $result['folderName'],
             "token" => $result['token'],
             "origin" => $result['origin']);
+    }
+
+    public static function deleteFileByToken($token)
+    {
+        $db = Database::getInstance();
+        $sql = "DELETE FROM files WHERE token='" . $token . "'";
+        if ($db->query($sql)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function getFiles($tableName, $origin, $sortFileBy, $sortType, $type, $typeOfFile, $viewDate)
+    {
+        $db = Database::getInstance();
+        $list = [];
+        $newList = array();
+        $sql = "SELECT * FROM " . $tableName . " WHERE origin= '$origin' ";
+
+        // if($sortType != ""){
+        //     $sql = $sql . "ORDER BY ". $sortType .' '.$sortType;
+        // }
+        if($typeOfFile != ""){
+            $sql = $sql ." AND ext= '$typeOfFile' ";
+        }
+        if ($sortFileBy != "") {
+            // createdAT || updatedAt not done ORDER BY supplier_id DESC
+            $sql = $sql . "ORDER BY " . $sortFileBy . " " . $sortType;
+        }
+        // $sql->execute();
+        $req = $db->query($sql);
+        foreach ($req->fetchAll() as $result) {
+            array_push($newList,
+                array("id" => $result['id'],
+                    "name" => $result['name'],
+                    "ext" => $result['ext'],
+                    "size" => $result['size'],
+                    "type" => $result['type'],
+                    "path" => $result['path'],
+                    "folderName" => $result['folderName'],
+                    "token" => $result['token'],
+                    "origin" => $result['origin'])
+            );
+            // $list[] = new File(
+            //     $file['id'],
+            //     $file['name'],
+            //     $file['ext'],
+            //     $file['size'],
+            //     $file['type'],
+            //     $file['path'],
+            //     $file['folderName'],
+            //     $file['token'],
+            //     $file['origin']);
+        }
+        return $newList;
     }
 
     public function __toString()

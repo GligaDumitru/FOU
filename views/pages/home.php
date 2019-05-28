@@ -32,12 +32,7 @@ if (isset($_GET['message'])) {
 
 <body>
     <!-- <div class="onLoad-loading-page" id="loading-page"></div> -->
-    <div id="loader">
-        <div class="loader-content">
-            <div id="shadow"></div>
-            <div id="box"></div>
-        </div>
-    </div>
+    <?php require_once('loader.php'); ?>
     <header class="app mainHeader hide" id="main-header">
         <nav class="app mainNav">
             <ul class="mainList">

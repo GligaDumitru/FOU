@@ -4,14 +4,51 @@
 session_start();
 require_once "../../checkRoute.php";
 require_once "../../routes.php";
-
+require_once '../../controllers/fouController.php';
+$totalItems = 0;
 if (!isset($_SESSION['email'])) {
     header('Location:login.php?controller=pages&action=login&error=noaccess');
 }
 
+if (isset($_GET['requested'])) {
+    if ($_GET['requested'] = 'upload') {
+        require_once 'uploadfilesForm.php';
+    }
+}
+
+if (isset($_GET['deletePopup']) && isset($_GET['file'])) {
+
+    require_once 'deletePopup.php';
+}
+if (isset($_GET['shareFile'])) {
+    $tokenSharedFile = $_GET['shareFile'];
+    require_once 'shareFile.php';
+}
+
+if (isset($_GET['message'])) {
+    if ($_GET['message'] == 'thankyou') {
+        require_once 'thankyou.php';
+    }
+}
+
+$viewFileBy = "";
+$sortFileBy = "";
+$filterFileBy = "";
+if (isset($_GET['viewFileBy'])) {
+    $viewFileBy = $_GET['viewFileBy'];
+}
+if (isset($_GET['sortFileBy'])) {
+    $sortFileBy = $_GET['sortFileBy'];
+}
+if (isset($_GET['filterFileBy'])) {
+    $filterFileBy = $_GET['filterFileBy'];
+}
+
 $userName = explode(' ', $_SESSION['name']);
 $userEmail = $_SESSION['email'];
+$allFiles = FouController::getFiles('all',$viewFileBy,$sortFileBy,$filterFileBy);
 
+$totalItems = count($allFiles);
 ?>
 
 <head>
@@ -22,15 +59,17 @@ $userEmail = $_SESSION['email'];
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
-    <!-- <link rel="stylesheet" href="../../assets/fontawesome/css/fontawesome-all.css" /> -->
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
 <body>
-    <div class="app grid row " style="min-width:1120px;">
+    <?php
+require_once 'loader.php';?>
+    <!-- <header class="app mainHeader hide" > -->
+    <div class="app grid row hide fadeIn animated" style="min-width:1120px;" id="main-header">
         <div class="col6 no-padding">
             <div class="app-menu-primary">
                 <div class="user-details">
@@ -40,191 +79,15 @@ $userEmail = $_SESSION['email'];
                         </a>
                     </div>
                     <div class="user">
-                        <span><?php echo $userEmail ?></span>
+                        <span class="bounce animated"><?php echo $userEmail ?></span>
                         <span class="name">Hi, <?php echo ucfirst(strtolower($userName[0])); ?></span>
                     </div>
                 </div>
                 <div class="nav-bar sidebar">
+
+
                     <ul id="mainFolder" class="sidebar-list">
-                        <li>
-
-                            <a href="#" class="listOfFolder">
-                                <div style="display: flex;align-items: baseline;">
-                                    <i id="caretChange" onclick="toggleFolder('subfolder level-1','caretChange');"
-                                        class="fa fa-caret-right folder-show"></i>
-
-                                    <i class="fas fa-folder-open"></i>
-                                    <span class="name">Foldere</span>
-                                </div>
-                                <div>
-                                    <span class="amount">10</span>
-                                </div>
-
-                            </a>
-                            <ul class="subfolder level-1" style="display: none;">
-                                <li>
-                                    <a href="#" class="listOfFolder">
-                                        <div style="display: flex;align-items: baseline;">
-                                            <i id="caretChangeTest1"
-                                                onclick="toggleFolder('subfolder level-2 test1','caretChangeTest1');"
-                                                class="fa fa-caret-right folder-show"></i>
-
-                                            <i class="fas fa-folder-open"></i>
-                                            <span class="name">Foldere</span>
-                                        </div>
-                                        <div>
-                                            <span class="amount">10</span>
-                                        </div>
-
-                                    </a>
-                                    <ul class="subfolder level-2 test1" style="display: none;">
-                                        <li>
-                                            <a href="#" class="listOfFolder">
-                                                <div style="display: flex;align-items: baseline;">
-                                                    <i id="caretChangeTest11"
-                                                        onclick="toggleFolder('subfolder level-3 test11','caretChangeTest11');"
-                                                        class="fa fa-caret-right folder-show"></i>
-
-                                                    <i class="fas fa-folder-open"></i>
-                                                    <span class="name">Foldere</span>
-                                                </div>
-                                                <div>
-                                                    <span class="amount">10</span>
-                                                </div>
-
-                                            </a>
-                                            <ul class="subfolder level-3 test11" style="display: none;">
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-folder"></i>
-                                                        <span class="name">Folder 1</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-folder"></i>
-                                                        <span class="name">Folder 1</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-folder"></i>
-                                                        <span class="name">Folder 1</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fa fa-folder"></i>
-                                                        <span class="name">Folder 1</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="listOfFolder">
-                                        <div style="display: flex;align-items: baseline;">
-                                            <i id="caretChangeTest2"
-                                                onclick="toggleFolder('subfolder level-2 test2','caretChangeTest2');"
-                                                class="fa fa-caret-right folder-show"></i>
-
-                                            <i class="fas fa-folder-open"></i>
-                                            <span class="name">Foldere</span>
-                                        </div>
-                                        <div>
-                                            <span class="amount">10</span>
-                                        </div>
-
-                                    </a>
-                                    <ul class="subfolder level-2 test2" style="display: none;">
-                                        <!-- <li>
-                                            <a href="#" class="listOfFolder"
-                                                onclick="toggleFolder('subfolder level-1');">
-                                                <div style="display: flex;align-items: baseline;">
-                                                    <i id="caretChange" class="fa fa-caret-right folder-show"></i>
-
-                                                    <i class="fas fa-folder-open"></i>
-                                                    <span class="name">Foldere</span>
-                                                </div>
-                                                <div>
-                                                    <span class="amount">10</span>
-                                                </div>
-
-                                            </a>
-
-                                        </li> -->
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-folder"></i>
-                                                <span class="name">Folder 1</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <!-- <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i>
-                                        <span class="name">Folder 1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i>
-                                        <span class="name">Folder 1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i>
-                                        <span class="name">Folder 1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i>
-                                        <span class="name">Folder 1</span>
-                                    </a>
-                                </li> -->
-                            </ul>
-                        </li>
-
+                        <?php require_once 'foldersTree.php';?>
                         <li>
                             <a href="#">
                                 <i class="fa fa-clock"></i>
@@ -288,14 +151,17 @@ $userEmail = $_SESSION['email'];
         <div class="main-dashboard-page">
 
             <div class="main-options">
-                <a href="/FOU/"> <button class="app button special red"> <i class="fas fa-home"></i> Home</button></a>
+                <a href="/FOU/"> <button class="app button special red"> <i class="fas fa-home"></i> </button></a>
                 <a href="/FOU/views/pages/about.php"> <button class="app button special blue"><i
-                            class="far fa-question-circle"></i> Detalii</button></a>
+                            class="far fa-question-circle"></i> </button></a>
 
                 <a href="#">
-                    <button class="app button special green">
-                        <i class="fas fa-upload"></i>
-                    </button>
+                    <a href="?requested=upload">
+                        <button class="app button special green">
+                            <i class="fas fa-upload"></i>
+                        </button>
+                    </a>
+
                 </a>
                 <a href="#">
                     <button class="app button special blue">
@@ -305,628 +171,58 @@ $userEmail = $_SESSION['email'];
             </div>
             <div class="main-options second">
                 <div class="file-conter">
-                    <span class="number-of-files">0</span>
+                    <span class="number-of-files"><?php echo $totalItems; ?></span>
                     <span> files</span>
                 </div>
                 <div class="view-options">
                     <ul class="view-list-options">
                         <li data-view="view">
-                            <a href="#"><i class="fas fa-th-list"></i> View</a>
+                            <a href="#"><i class="fas fa-th-list"></i> Vezi dupa</a>
                             <ul data-view="view" class="view-mode">
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','ASC');"><i class="fas fa-sort-numeric-down"></i> Created at ASC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','createdAt','DESC');"><i class="fas fa-sort-numeric-up"></i> Created at DESC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','ASC');" class="active-filter"><i class="fas fa-sort-numeric-down"></i> Updated at ASC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','DESC');"><i class="fas fa-sort-numeric-up"></i> Updated at DESC</a></li>
                             </ul>
                         </li>
                         <li data-view="sort">
                             <a href="#"><i class="fas fa-sort-alpha-up"></i> Sort</a>
                             <ul data-view="sort" class="view-mode">
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','name','ASC');" class="<?php if($sortFileBy == 'name_ASC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-down"></i> Nume ASC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','name','DESC');" class="<?php if($sortFileBy == 'name_DESC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-up"></i> Nume DESC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','size','ASC');"  class="<?php if($sortFileBy == 'size_ASC') echo 'active-filter'; ?>"><i class="fas fa-sort-numeric-down"></i> Marime ASC</a></li>
+                                <li><a href="#" onclick="addFilter('sortFileBy','size','DESC');" class="<?php if($sortFileBy == 'size_DESC') echo 'active-filter'; ?>" ><i class="fas fa-sort-numeric-up"></i> Marime DESC</a></li>
                             </ul>
                         </li>
                         <li data-view="filters">
                             <a href="#"><i class="fas fa-filter"></i> Filter</a>
                             <ul data-view="filters" class="view-mode">
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','txt');"  class="<?php if($filterFileBy == 'txt_ASC') echo 'active-filter'; ?>"><i class="far fa-file-code"></i> txt</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','html');" class="<?php if($filterFileBy == 'html_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> html</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','docs');" class="<?php if($filterFileBy == 'docs_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> docs</a></li>
+                                <li><a href="#" onclick="addFilter('filterFileBy','ppt');" class="<?php if($filterFileBy == 'ppt_ASC') echo 'active-filter'; ?>" ><i class="far fa-file-code"></i> ppt</a></li>
                             </ul>
                         </li>
-                        <li data-view="notifications">
+                        <!-- <li data-view="notifications">
                             <a href="#"><i class="fas fa-bell"></i> Notifications</a>
                             <ul data-view="notifications" class="view-mode">
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
-                                <li><a href="#">Link 1</a></li>
+                                <li><a href="#"><i class="fas fa-comment-slash"></i>No Notifications</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
             <div class="main-options table-view">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" /></th>
-                            <th><i class="fas fa-id-card-alt"></i> Nr.</th>
-                            <th> <i class="fas fa-file-signature"></i> Nume</th>
-                            <th><i class="fab fa-typo3"></i> Extensie</th>
-                            <th><i class="fas fa-expand"></i> Marime</th>
-                            <th><i class="fas fa-file-code"></i> Tip</th>
-                            <th><i class="far fa-folder-open"></i> Number Director</th>
-                            <th>
-                                <i class="fas fa-share-alt"></i> Distribuie
-                            </th>
-                            <th>
-                                <i class="fas fa-download"></i> Descarca
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" /></td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>22</td>
-                            <td>
-                                <button class="app button special red">
-                                    <i class="fas fa-share"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="app button special green">
-                                    <i class="fas fa-download"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <?php
+require_once 'view-table.php';
+?>
             </div>
         </div>
 
     </div>
+    <script src="../../assets/js/upload.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/validate.js"></script>
 </body>
 
 </html>

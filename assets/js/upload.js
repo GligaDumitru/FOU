@@ -1,10 +1,9 @@
-
-document.getElementById('main-header').classList.add("hide");
-document.getElementById('loader').classList.add("show"); 
-window.onload  = () => {
-  // document.getElementById('loader').classList.remove("show");
-  document.getElementById('main-header').classList.remove("hide");
-}
+document.getElementById("main-header").classList.add("hide");
+document.getElementById("loader").classList.add("show");
+window.onload = () => {
+  document.getElementById("loader").classList.remove("show");
+  document.getElementById("main-header").classList.remove("hide");
+};
 
 var dragAndDropEnable = function() {
   var div = document.createElement("div");
@@ -15,8 +14,6 @@ var dragAndDropEnable = function() {
   );
 };
 
-
-
 if (dragAndDropEnable) {
 } else {
   document.getElementById("optionToDragAndDrop").style.display = "none";
@@ -25,10 +22,9 @@ if (dragAndDropEnable) {
 document.getElementById("file") && document.getElementById("file").add;
 // document.getElementByID('fileInputId');
 document.getElementById("file") &&
-  document.getElementById("file").addEventListener("click", () => {
-  });
-
-document.getElementById("submitFile").disabled = true;
+  document.getElementById("file").addEventListener("click", () => {});
+if (document.getElementById("submitFile"))
+  document.getElementById("submitFile").disabled = true;
 
 const handleChangeInput = event => {
   let value = event.target.value;
@@ -54,18 +50,50 @@ const copyToClipboard = str => {
   document.body.removeChild(el);
 };
 
+const copyToClipboardOnClick = linkToCopy => {
+  while (linkToCopy.indexOf("amp;") !== -1) {
+    linkToCopy = linkToCopy.replace("amp;", "");
+  }
+  console.log("el here:", linkToCopy);
+  const elementToBeCreated = document.createElement("input");
+  elementToBeCreated.value = linkToCopy;
+  document.body.appendChild(elementToBeCreated);
+  elementToBeCreated.select();
+  document.execCommand("copy");
+  document.body.removeChild(elementToBeCreated);
+};
+
 const copyLink = () => {
   const el = document.getElementById("linkToCopy").innerHTML;
+
   const span = document.getElementById("copyLinkForDownload");
-  copyToClipboard(el);
+  copyToClipboardOnClick(el);
   span.innerHTML = "Link copied(CTRL + V to use it)";
   span.className += " linkCopied";
 };
-
 const closeContainer = container => {
   document.getElementsByClassName(container)[0].style.display = "none";
+  window.location.replace(
+    "http://localhost:8080/FOU/views/pages/dashboard.php"
+  );
 };
 
+// document.getElementById("linkForDownloadTheFileDirect") &&
+//   document
+//     .getElementById("linkForDownloadTheFileDirect")
+//     .addEventListener("click"),
+//   () => {
+//     console.log("a intart aiic ");
+//     redirectToPage("?message=thankyou");
+//   };
+
+
+  // document.getElementById("linkForDownloadTheFileDirect") && 
+  // document.getElementById("linkForDownloadTheFileDirect").onclick = () => {
+  //   console.log("a intart aiic ");
+  //   redirectToPage("?message=thankyou");
+  // }
+
 const redirectToPage = page => {
-  location.replace(window.location.href + page);
+  location.replace(window.location.origin + window.location.pathname + page);
 };

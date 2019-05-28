@@ -28,7 +28,7 @@ function invoke($controller, $action)
 $controllersArray = array(
     'pages' => ['error', 'register', 'main', 'about', 'login', 'noConnection', 'logout'],
     'auth' => ['signup', 'signin', 'recoverPassword', 'signup'],
-    'fou' => ['upload','downloadfile','feedback'],
+    'fou' => ['upload','downloadfile','feedback','deleteFile'],
 );
 
 if (array_key_exists($controller, $controllersArray)) {

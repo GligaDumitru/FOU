@@ -19,7 +19,8 @@ require_once("../../routes.php");
 </head>
 
 <body>
-    <header class="app mainHeader">
+<?php require_once('loader.php'); ?>
+    <header class="app mainHeader hide" id="main-header">
         <nav class="app mainNav">
             <ul class="mainList">
                 <li class="item mainItem">
@@ -107,7 +108,7 @@ require_once("../../routes.php");
             </div>
         </div>
     </header>
-    <script src="../../assets/js/validate.js"></script>
 </body>
-
+<script src="../../assets/js/validate.js"></script>
+<script src="../../assets/js/upload.js"></script>
 </html>
