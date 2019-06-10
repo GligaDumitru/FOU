@@ -14,12 +14,13 @@ require_once("../../routes.php");
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
 </head>
 
 <body>
-<?php require_once('loader.php'); ?>
+    <?php require_once('loader.php'); ?>
     <header class="app mainHeader hide" id="main-header">
         <nav class="app mainNav">
             <ul class="mainList">
@@ -43,25 +44,28 @@ require_once("../../routes.php");
         <div class="row">
             <div class="col center">
 
-                <form class="loginform" action="/FOU/?controller=auth&action=signin" method="POST" onsubmit="return validateForm();">
+                <form class="loginform" action="/FOU/?controller=auth&action=signin" method="POST"
+                    onsubmit="return validateForm();">
                     <span class="titleLogin">
                         Intra in cont
                     </span>
                     <div class="group-items">
                         <label for="emailUser">Email</label>
-                        <input type="email" maxlength="25" id="emailUser" minlength=5 name="email" onkeyup="checkInput(event);" maxlength="100" required />
+                        <input type="email" maxlength="25" id="emailUser" minlength=5 name="email"
+                            onkeyup="checkInput(event);" maxlength="100" required />
                     </div>
                     <div class="group-items">
                         <label for="passwordUser">Password</label>
-                        <input type="password" name="password" id="passwordUser" minlength=5 onkeyup="checkInput(event);" maxlength="12" required />
+                        <input type="password" name="password" id="passwordUser" minlength=5
+                            onkeyup="checkInput(event);" maxlength="12" required />
                     </div>
                     <div class="group-items options">
                         <a class="left" href="register.php?controller=pages&action=register">
                             Inregistrare
                         </a>
-                        <a class="right" href="recoverPassword.php">
+                        <!-- <a class="right" href="recoverPassword.php">
                             Am uitat parola
-                        </a>
+                        </a> -->
                     </div>
                     <?php
                     if (isset($_GET['error'])) {
@@ -98,11 +102,11 @@ require_once("../../routes.php");
                     }
                     ?>
                     <div class="group-items">
-                        <a href="dashboard.html">
-                            <button type="submit" id="submitLogin" class="app button submitLogin disabledBtn">
-                                Intra in cont
-                            </button>
-                        </a>
+
+                        <button type="submit" id="submitLogin" class="app button submitLogin disabledBtn">
+                            Intra in cont
+                        </button>
+
                     </div>
                 </form>
             </div>
@@ -111,4 +115,5 @@ require_once("../../routes.php");
 </body>
 <script src="../../assets/js/validate.js"></script>
 <script src="../../assets/js/upload.js"></script>
+
 </html>

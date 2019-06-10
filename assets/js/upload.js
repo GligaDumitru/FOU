@@ -3,8 +3,27 @@ document.getElementById("loader").classList.add("show");
 window.onload = () => {
   document.getElementById("loader").classList.remove("show");
   document.getElementById("main-header").classList.remove("hide");
+  emailForUser();
 };
 
+const getEmailForUser = _ => {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("userEmail").innerHTML = this.responseText;
+    }
+  };
+  xmlhttp.open(
+    "GET",
+    "http://localhost:8080/FOU/views/pages/viewEmail.php",
+    true
+  );
+  xmlhttp.send();
+};
+
+const emailForUser = _ => {
+  getEmailForUser();
+};
 var dragAndDropEnable = function() {
   var div = document.createElement("div");
   return (
@@ -87,12 +106,11 @@ const closeContainer = container => {
 //     redirectToPage("?message=thankyou");
 //   };
 
-
-  // document.getElementById("linkForDownloadTheFileDirect") && 
-  // document.getElementById("linkForDownloadTheFileDirect").onclick = () => {
-  //   console.log("a intart aiic ");
-  //   redirectToPage("?message=thankyou");
-  // }
+// document.getElementById("linkForDownloadTheFileDirect") &&
+// document.getElementById("linkForDownloadTheFileDirect").onclick = () => {
+//   console.log("a intart aiic ");
+//   redirectToPage("?message=thankyou");
+// }
 
 const redirectToPage = page => {
   location.replace(window.location.origin + window.location.pathname + page);

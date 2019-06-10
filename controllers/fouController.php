@@ -12,6 +12,21 @@ class FouController
         return $result;
     }
 
+    public function createdirectory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $dirName = $this->formatData($_POST['nameDirectory']);
+        
+            $this->requireFileCheckPath('models/users.php');
+            $result = User::createDirector($dirName);
+            if ($result === true) {
+                header("Location:/FOU/views/pages/dashboard.php?success=createddirectory");
+            } else {
+                header("Location:/FOU/views/pages/dashboard.php?error=createDirectory");
+            }
+        }
+    }
+
     public static function getFolderNameByEmail($email)
     {
         $dirArray = explode('@', $email);
@@ -45,8 +60,8 @@ class FouController
                     return File::getFiles('files', $_SESSION['email'], $sortFileBy, $sortType, $type, $typeOfFile, $viewDate);
                 }
             default:{
-                return File::getFiles('files_'.$case,$_SESSION['email'], $sortFileBy, $sortType, $type, $typeOfFile, $viewDate);
-            }
+                    return File::getFiles('files_' . $case, $_SESSION['email'], $sortFileBy, $sortType, $type, $typeOfFile, $viewDate);
+                }
         }
     }
 
@@ -194,8 +209,9 @@ class FouController
         return $data;
     }
 
-    public function updateFile(){
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    public function updateFile()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fileName = $this->formatData($_POST['nameFile']);
             $extFile = $this->formatData($_POST['extFile']);
             $token = $this->formatData($_GET['file']);

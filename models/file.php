@@ -69,6 +69,8 @@ class File
         );
     }
 
+  
+
     public static function deleteFileByToken($token)
     {
         $db = Database::getInstance();

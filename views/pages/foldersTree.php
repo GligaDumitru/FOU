@@ -8,39 +8,34 @@ if (isset($_GET['folder'])) {
 
 $__baseFolder = '../../upload/';
 require_once '../../controllers/fouController.php';
-$i = 1;
-$folderNameDefault = FouController::getFolderNameByEmail($_SESSION['email']);
-$fullPathDefault = $__baseFolder . $folderNameDefault;
 
-if (is_dir($fullPathDefault)) {
-    $foldersInBaseDirectory = FouController::getNumberOfFolders('../../upload/' . $folderNameDefault);
-    // FouController::updateInDbAllFiles(); #TODO
-    $arrayOfFolders = FouController::getFoldersInFolder('../../upload/' . $folderNameDefault);
-    ?>
-<li>
-    <a href="#" class="listOfFolder">
-        <div style="display: flex;align-items: baseline;">
-            <?php if ($foldersInBaseDirectory > 0) {
+$folders = User::getUserByEmail($_SESSION['email'])->directory;
+$folders = explode("___", $folders);
+?>
+     <li>
+            <a href="#" class="listOfFolder">
+            <div style="display: flex;align-items: baseline;">
+                
+                <i class="fas fa-folder-open"></i>
+                <span class="name">Foldere</span>
+            </div>
+            </a>
+        </li>
+<?php
+for ($i = 0; $i < count($folders); $i++) {
+    if ($folders[$i]) {
         ?>
-            <i id="caretChange" onclick="toggleFolder('subfolder level-1','caretChange');"
-                class="fa fa-caret-right folder-show"></i>
-            <?php
-}?>
-
-            <i class="fas fa-folder-open"></i>
-            <span class="name">Directoare</span>
-        </div>
-        <div>
-            <span class="amount"><?php echo $foldersInBaseDirectory; ?></span>
-        </div>
-    </a>
-</li>
-
-<?php
-} else {
-    ?>
-
-<?php
+        <li>
+            <a href="?folder=<?php echo $folders[$i]; ?>" class="listOfFolder">
+            <div style="display: flex;align-items: baseline;">
+                <i id="caretChange" onclick="toggleFolder('subfolder level-1','caretChange');"
+                    class="fa fa-caret-right folder-show"></i>
+                <i class="fas fa-folder-open"></i>
+                <span class="name"><?php echo $folders[$i]; ?></span>
+            </div>
+            </a>
+        </li>
+        <?php
 }
-// FouController::showFilesInFolder($__baseFolder.$folderNameDefault);
+}
 ?>

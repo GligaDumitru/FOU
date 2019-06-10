@@ -32,9 +32,10 @@ $i = 0;
 echo '<tbody>';
 foreach ($allFiles as $file) {
     $i++;
-
-    echo
-    '
+    if ($folder !== "") {
+        if (strpos($file['name'], $folder) !== false) {
+            echo
+            '
     <tr>
         <td><input type="checkbox" /></td>
         <td>' . $i . '</td>
@@ -81,6 +82,58 @@ foreach ($allFiles as $file) {
 
     </tr>
     ';
+        }
+    } else {
+        echo
+        '
+<tr>
+    <td><input type="checkbox" /></td>
+    <td>' . $i . '</td>
+    <td>' . $file['name'] . '</td>
+    <td>' . $file['ext'] . '</td>
+    <td>' . FouController::formatSizeUnits($file['size']) . '</td>
+    <td>' . $file['type'] . '</td>
+    <td>' . $file['folderName'] . '</td>
+    <td>
+        <a
+
+            href="?shareFile=' . $file['token'] . '"
+        >
+        <button class="app button special blue">
+            <i class="fas fa-share"></i>
+        </button>
+        </a>
+    </td>
+    <td>
+        <a
+            download="' . $file['name'] . $file['ext'] . '"
+            href="' . $file['path'] . '"
+            id="linkToCopy' . $i . '"
+        >
+            <button class="app button special green">
+                <i class="fas fa-download"></i>
+            </button>
+        </a>
+    </td>
+    <td>
+        <a href="?deletePopup=true&file=' . $file['token'] . '">
+            <button class="app button special red">
+                <i class="fas fa-minus-circle"></i>
+            </button>
+        </a>
+    </td>
+    <td>
+        <a href="?editPopup=true&file=' . $file['token'] . '">
+            <button class="app button special ">
+                <i  class="fas fa-pen"></i>
+            </button>
+        </a>
+    </td>
+
+</tr>
+';
+    }
+
 }
 echo ' </tbody>';
 ?>

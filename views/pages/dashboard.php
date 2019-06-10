@@ -7,6 +7,12 @@ require_once "../../routes.php";
 require_once '../../controllers/fouController.php';
 $totalItems = 0;
 $searchName = 'all';
+
+$folder = "";
+if (isset($_GET['folder'])) {
+    $folder = $_GET['folder'];
+}
+
 if (!isset($_SESSION['email'])) {
     header('Location:login.php?controller=pages&action=login&error=noaccess');
 }
@@ -15,6 +21,10 @@ if (isset($_GET['requested'])) {
     if ($_GET['requested'] = 'upload') {
         require_once 'uploadfilesForm.php';
     }
+}
+if (isset($_GET['createdirectory'])) {
+
+    require_once 'createDirectory.php';
 }
 
 if (isset($_GET['deletePopup']) && isset($_GET['file'])) {
@@ -69,14 +79,14 @@ $totalItems = count($allFiles);
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
     <link rel="stylesheet" href="https://yaireo.github.io/tagify/dist/tagify.css" />
-    
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
 
-<body>
+<body onload="emailForUser();">
     <?php
 require_once 'loader.php';?>
     <div class="app grid row hide fadeIn animated" style="min-width:1120px;" id="main-header">
@@ -89,7 +99,7 @@ require_once 'loader.php';?>
                         </a>
                     </div>
                     <div class="user">
-                        <span class="bounce animated"><?php echo $userEmail ?></span>
+                        <span class="bounce animated" id="userEmail"></span>
                         <span class="name">Hi, <?php echo ucfirst(strtolower($userName[0])); ?></span>
                     </div>
                 </div>
@@ -173,7 +183,7 @@ require_once 'loader.php';?>
                     </a>
 
                 </a>
-                <a href="#">
+                <a href="?createdirectory=true">
                     <button class="app button special blue">
                         <i class="fas fa-folder-plus 7x"></i>
                     </button>
@@ -187,7 +197,7 @@ require_once 'loader.php';?>
             </div>
             <div class="main-options second">
                 <div class="file-conter">
-                    <span class="number-of-files"><?php echo $totalItems; ?></span>
+                    <span class="number-of-files" id="numberOfFiles"><?php echo $totalItems; ?></span>
                     <span> files</span>
 
                 </div>
@@ -198,6 +208,14 @@ if ($sortFileBy !== "") {
                                     <span class="filter sort">
                                         Sortare :
                                         ' . explode('_', $sortFileBy)[0] . ' ' . explode('_', $sortFileBy)[1] . '
+                                    </span>
+                                ';
+}
+if ($folder !== "") {
+    echo '
+                                    <span class="filter sort">
+                                        Folder :
+                                        __base/' . $folder . '
                                     </span>
                                 ';
 }
@@ -225,7 +243,7 @@ if ($viewFileBy !== "") {
                                     </span>
                                 ';
 }
-if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== "" || $searchName !== "all") {
+if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== ""|| $folder !== "" || $searchName !== "all") {
     echo '
                                     <a href="/FOU/views/pages/dashboard.php">
                                     <button class="app button special" title="Clear All Fields">
