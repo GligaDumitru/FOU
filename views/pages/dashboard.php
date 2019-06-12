@@ -8,10 +8,13 @@ require_once '../../controllers/fouController.php';
 $totalItems = 0;
 $searchName = 'all';
 
-$folder = "";
 if (isset($_GET['folder'])) {
-    $folder = $_GET['folder'];
+    $_SESSION['folder'] = $_GET['folder'];
+} else if (!isset($_GET['requested'])) {
+    $_SESSION['folder'] = "";
 }
+
+$folder = $_SESSION['folder'] ;
 
 if (!isset($_SESSION['email'])) {
     header('Location:login.php?controller=pages&action=login&error=noaccess');
@@ -109,7 +112,7 @@ require_once 'loader.php';?>
                     <ul id="mainFolder" class="sidebar-list">
                         <?php require_once 'foldersTree.php';?>
                         <li>
-                            <a href="#">
+                            <a href="#" disabled>
                                 <i class="fa fa-clock"></i>
                                 <span class="name">
                                     Fisiere Recente
@@ -124,38 +127,38 @@ require_once 'loader.php';?>
                                 </span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">
                                 <i class="fas fa-history"></i>
                                 <span class="name">
                                     Istoric/Expirate
                                 </span>
                             </a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href="#">
                                 <i class="fas fa-poll-h"></i>
                                 <span class="name">
                                     Statistici
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
-                            <a href="#">
+                            <a href="/FOU/views/pages/about.php">
                                 <i class="fas fa-people-carry"></i>
                                 <span class="name">
                                     Ajutor
                                 </span>
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#">
                                 <i class="fa fa-cog"></i>
                                 <span class="name">
                                     Setari
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="/FOU?controller=pages&action=logout">
                                 <i class="fas fa-sign-out-alt"></i>
@@ -243,7 +246,7 @@ if ($viewFileBy !== "") {
                                     </span>
                                 ';
 }
-if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== ""|| $folder !== "" || $searchName !== "all") {
+if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== "" || $folder !== "" || $searchName !== "all") {
     echo '
                                     <a href="/FOU/views/pages/dashboard.php">
                                     <button class="app button special" title="Clear All Fields">

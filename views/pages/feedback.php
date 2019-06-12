@@ -23,7 +23,7 @@ require_once("../../routes.php");
         <nav class="app mainNav">
             <ul class="mainList">
                 <li class="item mainItem">
-                    <a href="login.php?controller=pages&action=login" class="link mainLink active">
+                    <a href="login.php?controller=pages&action=login" class="link mainLink">
                         <i class="far fa-user"></i> Login
                     </a>
                 </li>

@@ -29,11 +29,13 @@ if (count($allFiles) === 0) {
     echo '<tr><span class="popup-container popupSpecialType1"><img src="https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png"> Momentan nu sunt fisiere disponibile...</span></tr>';
 }
 $i = 0;
+$matchedFiles = 0;
 echo '<tbody>';
 foreach ($allFiles as $file) {
     $i++;
     if ($folder !== "") {
-        if (strpos($file['name'], $folder) !== false) {
+        if (strpos($file['path'], '/' . $folder) !== false) {
+            $matchedFiles++;
             echo
             '
     <tr>
@@ -79,6 +81,7 @@ foreach ($allFiles as $file) {
                 </button>
             </a>
         </td>
+        
 
     </tr>
     ';
@@ -133,6 +136,7 @@ foreach ($allFiles as $file) {
 </tr>
 ';
     }
+$totalItems = $matchedFiles;
 
 }
 echo ' </tbody>';

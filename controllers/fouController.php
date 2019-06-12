@@ -232,10 +232,18 @@ class FouController
     public function upload()
     {
         $pathSpace = '';
+        $innerFolder = "";
         if (isset($_SESSION['email'])) {
 
             $folderNameForUser = explode('@', $_SESSION['email']);
             $folderNameForUser = sha1($folderNameForUser[0]) . '/';
+
+            if(isset($_SESSION['folder'])){
+                $innerFolder = "/".$_SESSION['folder'];
+            }else{
+                $innerFolder = "uuuuuuuuuuuuuuuu";
+            }
+
 
         } else {
             $folderNameForUser = '';
@@ -249,12 +257,12 @@ class FouController
                 if (isset($_GET['login'])) {
                     $pathSpace = '../../';
                 }
-                $path = $pathSpace . 'upload/' . $folderNameForUser;
+                $path = $pathSpace . 'upload/' . $folderNameForUser.$innerFolder;
                 $extensions = ['jpg', 'jpeg', 'png', 'gif', 'txt', 'pdf'];
                 $allFiles = count($_FILES['files']['tmp_name']);
                 if (!isset($_SESSION['email'])) {
                     if ($allFiles > 1) {
-                        $errors[] = "You must log in account to upload more the 1 file.";
+                        $errors[] = "You must log in account to upload more then 1 file.";
                     }
                 }
                 if (empty($errors)) {
