@@ -26,7 +26,7 @@
         <?php
 
 if (count($allFiles) === 0) {
-    echo '<tr><span class="popup-container popupSpecialType1"><img src="https://cdn.dribbble.com/users/37530/screenshots/2485318/no-results.png"> Momentan nu sunt fisiere disponibile...</span></tr>';
+    echo '<tr><span class="popup-container popupSpecialType1"><img src="../../assets/images/no_results.png"> Momentan nu sunt fisiere disponibile...</span></tr>';
 }
 $i = 0;
 $matchedFiles = 0;

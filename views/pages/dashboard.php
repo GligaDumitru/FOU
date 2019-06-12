@@ -97,7 +97,7 @@ require_once 'loader.php';?>
             <div class="app-menu-primary">
                 <div class="user-details">
                     <div class="avatar-user">
-                        <a href="index.html">
+                        <a href="../../index.php">
                             <img src="https://png.pngtree.com/svg/20170331/businessman_863430.png" alt="avatar user" />
                         </a>
                     </div>
@@ -268,9 +268,8 @@ if ($viewFileBy !== "" || $filterFileBy !== "" || $sortFileBy !== "" || $folder 
                                             class="fas fa-sort-numeric-down"></i> Created at ASC</a></li>
                                 <li><a href="#" onclick="addFilter('viewFileBy','createdAt','DESC');"><i
                                             class="fas fa-sort-numeric-up"></i> Created at DESC</a></li>
-                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','ASC');"
-                                        class="active-filter"><i class="fas fa-sort-numeric-down"></i> Updated at
-                                        ASC</a></li>
+                                <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','ASC');"><i 
+                                            class="fas fa-sort-numeric-down"></i> Updated at ASC</a></li>
                                 <li><a href="#" onclick="addFilter('viewFileBy','updatedAt','DESC');"><i
                                             class="fas fa-sort-numeric-up"></i> Updated at DESC</a></li>
                             </ul>
