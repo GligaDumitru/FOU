@@ -24,7 +24,5 @@ class PagesController
         header("Location:/FOU");
       session_unset();
       session_destroy();
-   
-    //   header("Location:/FOU");
     }
 }

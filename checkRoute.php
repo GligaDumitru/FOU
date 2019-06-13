@@ -36,6 +36,3 @@ if (!isConnected()) { // check if we have internet
     $action     = 'main';
   }
 }
-
-
-// } else {

@@ -50,7 +50,6 @@ const handleChangeInput = event => {
   let elementSpan = document.getElementById("fileForUpload");
   let inputFile = document.getElementById("file");
   let labelForInput = inputFile.labels[0];
-  let selectFileMsg = document.getElementById("");
   if (value) {
     document.getElementById("submitFile").disabled = false;
     elementSpan.innerHTML = value.slice(

@@ -23,7 +23,7 @@ if (isset($_GET['message'])) {
     <link rel="stylesheet" href="assets/css/responsive.css" />
     <link rel="icon" href="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -37,24 +37,24 @@ if (isset($_GET['message'])) {
         <nav class="app mainNav">
             <ul class="mainList">
                 <?php
-if ($isLogged === true) {
-    echo '
+                if ($isLogged === true) {
+                    echo '
                     <li class="item mainItem">
                         <a href="views/pages/dashboard.php" class="link mainLink">
                             <i class="far fa-user"></i> <span>Dashboard</span>
                         </a>
                     </li>
                     ';
-} else {
-    echo '
+                } else {
+                    echo '
                     <li class="item mainItem">
                         <a href="views/pages/login.php?controller=pages&action=login" class="link mainLink">
                             <i class="far fa-user"></i> <span>Login</span>
                         </a>
                     </li>
                     ';
-}
-?>
+                }
+                ?>
 
                 <li class="item mainItem">
                     <a href="views/pages/about.php?controller=pages&action=about" class="link mainLink">
@@ -72,8 +72,7 @@ if ($isLogged === true) {
             <div class="col center">
                 <div class="app details">
                     <div class="app logo">
-                        <img src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" alt="logo"
-                            class="logoImg" />
+                        <img src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_960_720.png" alt="logo" class="logoImg" />
                     </div>
                     <div class="app appName">
                         <span>FOU - File Online Upload</span>
@@ -98,10 +97,8 @@ if ($isLogged === true) {
             <div class="formContainerUpload">
                 <form method="post" action="?controller=fou&action=upload" enctype="multipart/form-data">
                     <div class="box__input">
-                        <input class="box__file" onchange="handleChangeInput(event);" type="file" name="files[]"
-                            id="file" multiple style="display:none" />
-                        <label class="app labelInput" for="file"><strong>Choose a file</strong><span
-                                class="box__dragndrop" id="optionToDragAndDrop"> or drag it here</span>.</label>
+                        <input class="box__file" onchange="handleChangeInput(event);" type="file" name="files[]" id="file" multiple style="display:none" />
+                        <label class="app labelInput" for="file"><strong>Choose a file</strong><span class="box__dragndrop" id="optionToDragAndDrop"> or drag it here</span>.</label>
                         <br>
                     </div>
                     <div class="boxFileUploaded">

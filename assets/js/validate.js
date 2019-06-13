@@ -17,7 +17,6 @@ const showErrorMessage = msg => {
 };
 const validateSignupForm = () => {
   const name = document.getElementById("userName");
-  const email = document.getElementById("userEmail");
   const password = document.getElementById("userPassword");
   const rePassword = document.getElementById("userRePassword");
 
@@ -43,7 +42,6 @@ const checkInput = event => {
   const name = event.target.name;
   const element = document.getElementById(id);
   const label = element.labels[0];
-  const passwordMatch = false;
   var errorColor;
 
   if (type == "email") {

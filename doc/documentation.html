@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    h1 {
+        border: 1px solid red;
+        padding: 35px;
+        text-align: center;
+    }
+
+    .contents {
+        border: 1px solid black;
+        padding: 35px;
+        text-align: center;
+    }
+
+    h2.line {
+        text-align: center;
+    }
+
+    div.docDoc {
+        padding: 50px;
+    }
+
+    div li {
+        padding: 5px;
+    }
+</style>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Documentation</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+    <a href="../views/pages/about.php">
+        <h1>FOU - File Online Upload</h1>
+    </a>
+
+    <div class="docDoc">
+        <h2>Documentatie</h2>
+        <div>
+            <ol>
+                <a href="#Introducere">
+                    <li>Introducere</li>
+                </a>
+                <a href="#Descrierea">
+                    <li>Descrierea proiectului</li>
+                </a>
+                <a href="#Tehnologii">
+                    <li>Tehnologii folosite</li>
+                </a>
+                <ol>
+                    <a href="#HTML5">
+                        <li>HTML5</li>
+                    </a>
+                    <a href="#CSS">
+                        <li>CSS3</li>
+                    </a>
+                    <a href="#JavaScript">
+                        <li>JavaScript</li>
+                    </a>
+                    <a href="#PHP">
+                        <li>PHP</li>
+                    </a>
+                    <a href="#MySQL">
+                        <li>MySQL</li>
+                    </a>
+                    <a href="#Amazon">
+                        <li>Amazon Web Services</li>
+                    </a>
+                    <a href="#HTTP">
+                        <li>HTTP REQUEST</li>
+                    </a>
+                </ol>
+                <!-- <li>Sarcini</li>
+                <ol>
+                    <li>Gliga Dumitru</li>
+                    <li>Broasca Iulian</li>
+                </ol> -->
+            </ol>
+        </div>
+
+        <div class="contents">
+            <a name="Introducere">
+                <h2 class="line">Introducere</h2>
+            </a>
+            <p>FOU - File Online Upload</p>
+        </div>
+        <div class="contents">
+            <a name="Descrierea">
+                <h2 class="line">Descrierea proiectului</h2>
+            </a>
+            <p> Sa se dezvolte o aplicatie Web care sa permita utilizatorilor transferul de pe calculatorul local al
+                documentelor proprii pe baza unui cont creat in prealabil. Daca se transmite un document deja existent,
+                sa
+                se retina versiunile mai vechi, utilizatorul avand posibilitatea sa le acceseze oricand.
+                Sistemul va permite adaugarea unor meta-date suplimentare pentru fiecare document incarcat: descriere,
+                tag-uri etc. De asemenea,
+                utilizatorii vor avea posibilitatea de grupare a fisierelor incarcate.
+                Vor mai fi oferite si functiile de stergere,
+                cautare si preluare a documentelor existente. </p>
+        </div>
+        <div class="contents">
+            <a name="Tehnologii">
+                <h2 class="line">Tehnologii folosite</h2>
+            </a>
+            <p>In proiectul nostru am folosit pe partea de Front-End
+                <a name="HTML5">HTML</a> si <a name="CSS">CSS</a>, iar pentru implementarea functionalitatilor am
+                folosit <a name="JavaScript">JavaScript.</a></p>
+
+            <p>Pe partea de Back-end am folosit <a name="PHP">PHP</a>, iar pentru a avea acces la baza de date real-time
+                am decis sa
+                folosim <a name="Amazon">AWS</a>, avand acces amandoi la ea prin intermediul <a name="MySQL">MySQL</a>.
+                Totodata, pentru anumite afisari am folosit si <a name="HTTP">HTTP REQUEST</a>.</p>
+        </div>
+    </div>
+</body>
+
+</html>

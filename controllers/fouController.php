@@ -155,7 +155,6 @@ class FouController
                 return "A File With The Same Name Already Exists";
             }
         }
-        return true;
     }
 
     public static function formatSizeUnits($bytes)
@@ -196,8 +195,6 @@ class FouController
             $db = Database::getInstance();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $file = File::getFileByToken($fileToken);
-            $size = FouController::formatSizeUnits($file['size']);
-            $name = $file['name'];
             require_once is_file('views/pages/downloadPage.php') ? 'views/pages/downloadPage.php' : 'downloadPage.php';
         }
     }
