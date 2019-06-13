@@ -733,7 +733,7 @@ table tr {
 
 .table-view {
   max-height: 800px;
-  overflow: overlay;
+  /* overflow: overlay; */
   padding-right: 5px;
 }
 
